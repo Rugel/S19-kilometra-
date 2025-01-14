@@ -1,0 +1,1 @@
+export default function StartButton() { return <div id="button"><button className="start" onClick={null}>START</button></div> };
