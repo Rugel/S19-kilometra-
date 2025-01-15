@@ -1,36 +1,26 @@
 "use client";
-
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { useEffect } from "react";
-import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
+import { MapContainer, TileLayer, Polyline } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "leaflet.fullscreen/Control.FullScreen.css";
+import "leaflet.fullscreen";
+import Recta from "./Recta";
+import {prawaStr} from "../utils/Points";
+import { polylineStyle } from "../utils/Points";
 
-
-const OpenMap = () => {
-  useEffect(() => {
-    import("leaflet-fullscreen").then(() => {
-      console.log("Wtyczka fullscreen załadowana");
-    });
-  }, []);
-
+export default function OpenMap() {
   return (
     <MapContainer
-      center={[51.631600, 22.456937]} // [latitude, longitude]
+      center={[51.631805, 22.46528]}
       zoom={13}
-      style={{ height: "470px", width: "100%" }}
+      style={{ height: "700px", width: "100%" }}
       fullscreenControl={true}
     >
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      <Marker position={[51.631600, 22.456937]}>
-        <Popup>
-          Budowa S19 <br /> Kock
-        </Popup>
-      </Marker>
+      <Recta />
+      <Polyline positions={prawaStr} pathOptions={polylineStyle} />
     </MapContainer>
   );
-};
-
-export default OpenMap;
+}

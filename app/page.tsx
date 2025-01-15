@@ -3,9 +3,15 @@ import React from "react";
 import 'leaflet/dist/leaflet.css';
 import dynamic from "next/dynamic";
 import StartButton from "./components/StartButton";
+import OpenMap from "./components/OpenMap";
+import MapsSelect from "./components/MapsSelect";
+import GeoLink from "./components/GeoLink";
+import Info from "./components/Info";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 
-const OpenMap = dynamic(() => import("./components/OpenMap"), { ssr: false });
+//const OpenMap = dynamic(() => import("./components/OpenMap"), { ssr: false });
 export default function Home() {
 
     const main_func = () => {
@@ -219,45 +225,19 @@ export default function Home() {
                     .setLatLng(popLocation)
                     .setContent(`zapis w osi</br>km ${subline_length}`)
                     .openOn(map) */
-            };
+    };
 
     return (
-        <html>
-            <body>
-                <div id="contener">
-                    <div id="content">
-                        <div className="header">
-                            <u>
-                                <h3>S19 - Obwodnica Kocka</h3>
-                            </u>
-                            <i>
-                                <p>odczyt kilometrażu</p>
-                            </i>
-                        </div>
-                        <StartButton />
-                        <fieldset>
-                            <legend className="view"><i>wybór mapy</i></legend>
-                            <div className="view">
-                                <input type="radio" id="map1" name="map" value="osm" defaultChecked />
-                                <label htmlFor="map1">OpenStreetMap </label>
-                                <input type="radio" id="map2" name="map" value="sat" />
-                                <label htmlFor="map2">GoogleSatellite </label>
-                                <input type="radio" id="map3" name="map" value="str" />
-                                <label htmlFor="map3">GoogleMaps</label>
-                            </div>
-                        </fieldset>
-                        <div id="link"><a href="https://mapy.geoportal.gov.pl/mobile/#showNewWmtsPanel=true&1677753466502"
-                            target="blank">dodatkowe dane na mapie Geoportal</a></div>
-                        <div id="info">
-                            <p id="result">km <span id="odczyt"> ............</span></p>
-                            <p className="normal">dokładność lokalizacji: <span id="dok">.......</span> m</p>
-                        </div>
-                    </div>
-                    <div id='map'><OpenMap /></div>
-                    <div id="footer"><b>* 2025 * S19 Kock *</b></div>
-                </div>
-
-            </body>
-        </html>
+        <div id="contener">
+            <div id="content">
+                <Header />
+                <StartButton />
+                <MapsSelect />
+                <GeoLink />
+                <Info />
+            </div>
+            <div id='map'><OpenMap /></div>
+            <Footer />
+        </div>
     );
 }
