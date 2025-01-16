@@ -1,3 +1,4 @@
+'use client';
 import { Rectangle } from "react-leaflet";
 
 export default function Recta() {
