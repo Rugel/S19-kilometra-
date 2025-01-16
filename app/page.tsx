@@ -215,7 +215,7 @@ export default function Home() {
     </div>
   );
 }*/
-'use client';
+/*'use client';
 import React, { useState, useEffect, useCallback } from "react";
 import OpenMap from "./components/OpenMap";
 import MapsSelect from "./components/MapsSelect";
@@ -295,6 +295,90 @@ export default function Home() {
       <Footer />
     </div>
   );
+}*/
+'use client';
+import React, { useState, useEffect, useCallback } from "react";
+import OpenMap from "./components/OpenMap";
+import MapsSelect from "./components/MapsSelect";
+import GeoLink from "./components/GeoLink";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import { watchGeolocation } from "./utils/geolocalization";
+
+// Definiujemy typ dla lokalizacji
+type Location = {
+  latitude: number;
+  longitude: number;
+};
+
+export default function Home() {
+  const [location, setLocation] = useState<Location | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isTracking, setIsTracking] = useState(false);
+  const [stopTracking, setStopTracking] = useState<null | (() => void)>(null);
+
+  // Funkcja do rozpoczęcia śledzenia lokalizacji
+  const startTracking = useCallback(() => {
+    if (typeof window !== "undefined") {
+      setIsTracking(true);
+      const stop = watchGeolocation(
+        (position: Location) => setLocation(position),
+        (err: { message: string }) => setError(err.message || "Wystąpił błąd"),
+        { enableHighAccuracy: true }
+      );
+      setStopTracking(() => stop);
+    }
+  }, []);
+
+  // Funkcja do zatrzymania śledzenia lokalizacji
+  const stopTrackingLocation = useCallback(() => {
+    if (stopTracking) stopTracking();
+    setIsTracking(false);
+  }, [stopTracking]);
+
+  // Zatrzymywanie śledzenia przy odmontowaniu komponentu
+  useEffect(() => {
+    return () => {
+      if (stopTracking) stopTracking();
+    };
+  }, [stopTracking]);
+
+  // Renderowanie tylko po stronie klienta
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  return (
+    <div id="contener">
+      <div id="content">
+        <Header />
+        <div className="info">
+          <button className="start" onClick={startTracking} disabled={isTracking}>
+            Rozpocznij
+          </button>
+          <button className="start" onClick={stopTrackingLocation} disabled={!isTracking}>
+            Zatrzymaj
+          </button>
+          <div>
+            <p id="result">
+              Szerokość: <span className="data">{location ? location.latitude : 'brak danych'}</span>
+            </p>
+            <p className="normal">
+              Długość: <span className="data">{location ? location.longitude : 'brak danych'}</span>
+            </p>
+          </div>
+          {error && <p>Błąd: {error}</p>}
+        </div>
+        <MapsSelect />
+        <GeoLink />
+      </div>
+      <div id="map">
+        <OpenMap />
+      </div>
+      <Footer />
+    </div>
+  );
 }
+
 
 
