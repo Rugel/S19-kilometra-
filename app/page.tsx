@@ -16,13 +16,13 @@ export default function Home() {
     const [location, setLocation] = useState(null);
     const [error, setError] = useState(null);
     const [isTracking, setIsTracking] = useState(false);
-    let stopTracking = null;
+    let stopTracking: unknown = null;
 
     const startTracking = () => {
       setIsTracking(true);
       stopTracking = watchGeolocation(
-        (position) => setLocation(position),
-        (err) => setError(err),
+        (position: React.SetStateAction<null>) => setLocation(position),
+        (err: React.SetStateAction<null>) => setError(err),
         { enableHighAccuracy: true }
       );
     };
@@ -51,7 +51,7 @@ export default function Home() {
               Zatrzymaj
             </button>
             <div >
-              <p id='result'>Szerokość: <span className="data">{location ? location.latitude : ' brak danych'}</span>
+              <p id='result'>Szerokość: <span className="data">{location ? location.latitude : 'brak danych'}</span>
               </p>
               <p className="normal">Długość: <span className="data">{location ? location.longitude : 'brak danych'}</span>
               </p>
