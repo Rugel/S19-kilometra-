@@ -37,7 +37,7 @@ export default function Home() {
         // Zatrzymujemy śledzenie przy odmontowaniu komponentu
         if (stopTracking) stopTracking();
       };
-    }, []);
+    }, [stopTracking]);
 
     return (
       <div id="contener">
