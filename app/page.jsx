@@ -1,6 +1,5 @@
 'use client';
 import React from "react";
-import 'leaflet/dist/leaflet.css';
 import OpenMap from "./components/OpenMap";
 import MapsSelect from "./components/MapsSelect";
 import GeoLink from "./components/GeoLink";
@@ -8,6 +7,8 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { useState, useEffect } from 'react';
 import { watchGeolocation } from "./utils/geolocalization";
+//import dynamic from "next/dynamic";
+
 
 
 export default function Home() {
@@ -29,7 +30,6 @@ export default function Home() {
     const stopTrackingLocation = () => {
       if (stopTracking) stopTracking();
       setIsTracking(false);
-      console.log('zatrzymano');
     };
 
     useEffect(() => {

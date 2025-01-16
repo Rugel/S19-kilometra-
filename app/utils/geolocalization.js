@@ -1,3 +1,4 @@
+'use client';
 export const watchGeolocation = (onSuccess, onError, options = {}) => {
     if (!("geolocation" in navigator)) {
       onError("Geolokalizacja nie jest wspierana przez tę przeglądarkę.");
