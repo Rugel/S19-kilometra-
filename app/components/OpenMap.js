@@ -6,6 +6,7 @@ import "leaflet.fullscreen";
 import Recta from "./Recta";
 import {prawaStr} from "../utils/Points";
 import { polylineStyle } from "../utils/Points";
+import { lewaStr } from "../utils/Points";
 
 export default function OpenMap() {
   return (
@@ -21,6 +22,7 @@ export default function OpenMap() {
       />
       <Recta />
       <Polyline positions={prawaStr} pathOptions={polylineStyle} />
+      <Polyline positions={lewaStr} pathOptions={polylineStyle} />
     </MapContainer>
   );
 }
