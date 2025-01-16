@@ -1,6 +1,5 @@
 'use client';
 import React from 'react';
-//import OpenMap from "./components/OpenMap";
 import MapsSelect from "./components/MapsSelect";
 import GeoLink from "./components/GeoLink";
 import Footer from "./components/Footer";
@@ -9,7 +8,7 @@ import Test from "./components/Localization";
 import dynamic from 'next/dynamic';
 
 const OpenMap = dynamic(() => import('./components/OpenMap'), {
-  ssr: false, // Wyłączenie renderowania na serwerze
+  ssr: false,
 });
 
 export default function Home() {
