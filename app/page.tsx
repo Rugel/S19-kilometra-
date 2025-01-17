@@ -4,7 +4,7 @@ import MapsSelect from "./components/MapsSelect";
 import GeoLink from "./components/GeoLink";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Test from "./components/Localization";
+import Localization from "./components/Localization";
 import dynamic from 'next/dynamic';
 
 const OpenMap = dynamic(() => import('./components/OpenMap'), {
@@ -17,7 +17,7 @@ export default function Home() {
     <div id="contener">
       <div id="content">
         <Header />
-        <Test />
+        <Localization />
         <MapsSelect />
         <GeoLink />
       </div>

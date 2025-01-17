@@ -1,27 +1,27 @@
 
 'use client';
 import React, { useState, useEffect, useCallback } from "react";
-import { watchGeolocation } from "../utils/geolocalization"; 
+import { watchGeolocation } from "../utils/geolocalization";
 
 type Location = {
   latitude: number;
   longitude: number;
 };
 
-export default function Test() {
+export default function Localization() {
   const [location, setLocation] = useState<Location | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isTracking, setIsTracking] = useState(false);
   const [stopTracking, setStopTracking] = useState<null | (() => void)>(null);
 
   const startTracking = useCallback(() => {
-      setIsTracking(true);
-      const stop = watchGeolocation(
-        (position: Location) => setLocation(position),
-        (err: { message: string }) => setError(err.message || "Wystąpił błąd"),
-        { enableHighAccuracy: true }
-      );
-      setStopTracking(() => stop);
+    setIsTracking(true);
+    const stop = watchGeolocation(
+      (position: Location) => setLocation(position),
+      (err: { message: string }) => setError(err.message || "Wystąpił błąd"),
+      { enableHighAccuracy: true }
+    );
+    setStopTracking(() => stop);
   }, []);
 
   const stopTrackingLocation = useCallback(() => {
@@ -29,11 +29,11 @@ export default function Test() {
     setIsTracking(false);
   }, [stopTracking]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     return () => {
       if (stopTracking) stopTracking();
     };
-  }, [stopTracking]);
+  }, [stopTracking]);*/
 
   return (
     <div className="info">

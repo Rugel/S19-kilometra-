@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "S19 - Kock - odczyt kilometrażu",
-  description: "Odczyt kilometrażu na budowie S19 - Obwodnica Kocka i Woli Skromowskiej",
+  description: "Odczyt kilometrażu na budowie S19 - Obwodnica Kocka i Woli Skromowskiej za pomocą smartfona z modułem GPS",
 };
 
 export default function RootLayout({
