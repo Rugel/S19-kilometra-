@@ -38,10 +38,10 @@ export default function Test() {
   return (
     <div className="info">
       <button className="start" onClick={startTracking} disabled={isTracking}>
-        Rozpocznij
+        START
       </button>
       <button className="start" onClick={stopTrackingLocation} disabled={!isTracking}>
-        Zatrzymaj
+        STOP
       </button>
       <div>
         <p id="result">

@@ -50,7 +50,8 @@
   margin: 1rem;
   margin-bottom: 1.6rem;
   margin-top: 1.6rem;
-  width: 10rem;
+  width: 35vw;
+  max-width: 150px;
   letter-spacing: 2px;
 }
 
@@ -122,7 +123,7 @@ legend {
 }
 
 .info{
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 label {
