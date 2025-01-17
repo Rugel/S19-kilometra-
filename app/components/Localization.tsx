@@ -29,12 +29,6 @@ export default function Localization() {
     setIsTracking(false);
   }, [stopTracking]);
 
-  /*useEffect(() => {
-    return () => {
-      if (stopTracking) stopTracking();
-    };
-  }, [stopTracking]);*/
-
   return (
     <div className="info">
       <button className="start" onClick={startTracking} disabled={isTracking}>
