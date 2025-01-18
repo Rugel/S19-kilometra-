@@ -4,6 +4,7 @@ import MapsSelect from "./components/MapsSelect";
 import GeoLink from "./components/GeoLink";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import 'leaflet/dist/leaflet.css';
 //import Localization from "./components/Localization";
 import dynamic from 'next/dynamic';
 //import MapComponent from './components/MapCom'
