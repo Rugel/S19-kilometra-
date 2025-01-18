@@ -70,11 +70,11 @@
 }
 
 #map {
-  width: 600px;
-  min-height: 89vh;
-  margin: 0 15px;
+margin-left: 5%;
+margin-right: 5%;
   flex-grow: 10;
   border: 1px solid;
+  height: auto;
 }
 
 #footer {
