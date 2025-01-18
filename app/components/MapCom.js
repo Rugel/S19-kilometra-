@@ -1,7 +1,7 @@
 
-
+'use client';
 import { useState } from "react";
-import dynamic from "next/dynamic";
+//import dynamic from "next/dynamic";
 import { MapContainer, TileLayer, Marker, Popup, useMap, Polyline } from "react-leaflet";
 import { prawaStr } from "../utils/Points";
 import { lewaStr } from "../utils/Points";

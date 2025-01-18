@@ -8,9 +8,7 @@ import Header from "./components/Header";
 import dynamic from 'next/dynamic';
 import MapComponent from './components/MapCom'
 
-const OpenMap = dynamic(() => import('./components/OpenMap'), {
-  ssr: false,
-});
+//const OpenMap = dynamic(() => import('./components/OpenMap'), { ssr: false, });
 
 export default function Home() {
 
