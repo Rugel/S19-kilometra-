@@ -15,15 +15,13 @@ import L from 'leaflet';
 // Lazy loading Leaflet map to prevent SSR issues
 //const Map = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false, });
 
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 
 L.Icon.Default.mergeOptions({
-    iconRetinaUrl: markerIcon2x,
-    iconUrl: markerIcon,
-    shadowUrl: markerShadow,
-});
+    iconRetinaUrl: '/images/marker-icon-2x.png',
+    iconUrl: '/images/marker-icon.png',
+    shadowUrl: '/images/marker-shadow.png',
+  });
+  
 
 // Komponent do centrowania mapy
 const CenterMap = ({ location }) => {
