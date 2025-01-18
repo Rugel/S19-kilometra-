@@ -12,9 +12,7 @@ import "leaflet.fullscreen";
 import L from 'leaflet';
 
 // Lazy loading Leaflet map to prevent SSR issues
-const Map = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), {
-    ssr: false,
-});
+//const Map = dynamic(() => import("react-leaflet").then((mod) => mod.MapContainer), { ssr: false, });
 
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
