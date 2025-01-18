@@ -8,6 +8,7 @@ import { lewaStr } from "../utils/Points";
 import { polylineStyle } from "../utils/Points";
 import Recta from "./Recta";
 import "leaflet.fullscreen/Control.FullScreen.css";
+import 'leaflet/dist/leaflet.css';
 import "leaflet.fullscreen";
 import L from 'leaflet';
 
