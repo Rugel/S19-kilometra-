@@ -86,11 +86,13 @@
 }
 
 #map {
-margin-left: 5%;
-margin-right: 5%;
+  left: 0;
+  right: 0;
+  margin: auto;
   flex-grow: 10;
   border: 1px solid;
   height: auto;
+  max-width: 920px;
 }
 
 #footer {

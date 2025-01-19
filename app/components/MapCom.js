@@ -75,8 +75,8 @@ const MapComponent = () => {
             <div id="map">
                 <MapContainer
                     center={[51.631805, 22.46528]} // Domyślne centrum mapy
-                    zoom={13}
-                    style={{ height: "700px", width: "100%" }}
+                    zoom={12}
+                    style={{ height: "60vh", width: "100%" }}
                     fullscreenControl={true}
                 >
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
