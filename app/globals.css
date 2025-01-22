@@ -81,10 +81,6 @@
   font-size: 1rem;
 }
 
-#result {
-  height: 2.5rem;
-}
-
 #map {
   left: 0;
   right: 0;
@@ -141,10 +137,6 @@ legend {
   box-shadow: inset 0px 0px 15px #c8c8c8;
   border-radius: 5px;
   letter-spacing: 2px;
-}
-
-.info{
-  margin-bottom: 1rem;
 }
 
 label {

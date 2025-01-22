@@ -1,13 +1,14 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap, Polyline } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import { prawaStr, lewaStr, polylineStyle } from "../utils/Points";
 import Recta from "./Recta";
 import "leaflet.fullscreen/Control.FullScreen.css";
-import 'leaflet/dist/leaflet.css';
+import "leaflet/dist/leaflet.css";
 import "leaflet.fullscreen";
-import L from 'leaflet';
+import L from "leaflet";
+import { lineLenth } from "../utils/lineLenth";
 
 // Konfiguracja ikon Leaflet
 L.Icon.Default.mergeOptions({
@@ -16,20 +17,28 @@ L.Icon.Default.mergeOptions({
     shadowUrl: '/images/marker-shadow.png',
 });
 
-// Komponent do centrowania mapy
-const CenterMap = ({ location }) => {
-    const map = useMap();
+// Komponent do obliczania długości linii
+const LineLengthCalculator = ({ latitude, longitude, setResult }) => {
+    const map = useMap(); // Uzyskaj dostęp do instancji mapy
+
     useEffect(() => {
-        if (location) {
-            map.flyTo(location, 13, { animate: true });
+        if (map && latitude && longitude) {
+            try {
+                const result = lineLenth(map, latitude, longitude); // Oblicz długość linii
+                setResult(result); // Przekaż wynik do komponentu nadrzędnego
+            } catch (error) {
+                console.error("Błąd obliczeń:", error);
+            }
         }
-    }, [location, map]); // Aktualizacja za każdym razem, gdy zmieni się lokalizacja
+    }, [map, latitude, longitude, setResult]);
+
     return null;
 };
 
 const MapComponent = () => {
-    const [location, setLocation] = useState(null); // Aktualna pozycja użytkownika
-    const [watchId, setWatchId] = useState(null); // ID procesu śledzenia
+    const [location, setLocation] = useState(null);
+    const [watchId, setWatchId] = useState(null);
+    const [result, setResult] = useState(null); // Stan przechowujący wynik obliczeń
 
     const handleClickStart = () => {
         if (navigator.geolocation) {
@@ -39,19 +48,19 @@ const MapComponent = () => {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     };
-                    setLocation(userLocation); // Aktualizacja lokalizacji użytkownika
+                    setLocation(userLocation);
                 },
                 (error) => {
                     console.error("Błąd geolokalizacji:", error);
                     alert("Nie udało się uzyskać lokalizacji.");
                 },
                 {
-                    enableHighAccuracy: true, // Wysoka dokładność lokalizacji
-                    maximumAge: 0, // Brak buforowania danych
-                    timeout: 10000, // Maksymalny czas oczekiwania na lokalizację
+                    enableHighAccuracy: true,
+                    maximumAge: 0,
+                    timeout: 10000,
                 }
             );
-            setWatchId(id); // Przechowywanie ID procesu śledzenia
+            setWatchId(id);
         } else {
             alert("Geolokalizacja nie jest obsługiwana przez tę przeglądarkę.");
         }
@@ -59,13 +68,22 @@ const MapComponent = () => {
 
     const handleClickStop = () => {
         if (watchId !== null) {
-            navigator.geolocation.clearWatch(watchId); // Zatrzymanie śledzenia
-            setWatchId(null); // Wyczyszczenie ID procesu
+            navigator.geolocation.clearWatch(watchId);
+            setWatchId(null);
         }
     };
 
     return (
         <div>
+            <div>
+                {result ? (
+                    <div id='info'>
+                        <p>KM: <span className="data">{result.length}</span></p>
+                    </div>
+                ) : (
+                    <p>KM: <span className="data">brak danych</span></p>
+                )}
+            </div>
             <button className="start" onClick={handleClickStart} style={{ marginRight: "10px" }}>
                 Start
             </button>
@@ -74,7 +92,7 @@ const MapComponent = () => {
             </button>
             <div id="map">
                 <MapContainer
-                    center={[51.631805, 22.46528]} // Domyślne centrum mapy
+                    center={[51.631805, 22.46528]}
                     zoom={12}
                     style={{ height: "60vh", width: "100%" }}
                     fullscreenControl={true}
@@ -88,6 +106,11 @@ const MapComponent = () => {
                                 </Popup>
                             </Marker>
                             <CenterMap location={location} />
+                            <LineLengthCalculator
+                                latitude={location.lat}
+                                longitude={location.lng}
+                                setResult={setResult}
+                            />
                         </>
                     )}
                     <Recta />
@@ -99,7 +122,15 @@ const MapComponent = () => {
     );
 };
 
+const CenterMap = ({ location }) => {
+    const map = useMap();
+    useEffect(() => {
+        if (location) {
+            map.flyTo(location, 13, { animate: true });
+        }
+    }, [location, map]);
+    return null;
+};
+
 export default MapComponent;
-
-
 

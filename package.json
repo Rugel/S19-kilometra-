@@ -9,8 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@turf/line-slice": "^7.2.0",
+    "@turf/turf": "^7.2.0",
     "leaflet": "^1.9.4",
     "leaflet-fullscreen": "^1.0.2",
+    "leaflet-geometryutil": "^0.10.3",
     "leaflet.fullscreen": "^3.0.2",
     "next": "15.1.4",
     "react": "^19.0.0",
