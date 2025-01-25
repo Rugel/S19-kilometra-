@@ -6,6 +6,7 @@ import { prawaStr, lewaStr } from './Points';
 
 // Funkcja obliczająca długość linii
 export function lineLenth(map, latitude, longitude) {
+    const fix = 0.998980502102;
     const poi = L.latLng(latitude, longitude);
     const closestPointL = L.GeometryUtil.closest(map, lewaStr, poi);
     const closestPointP = L.GeometryUtil.closest(map, prawaStr, poi);
@@ -16,7 +17,7 @@ export function lineLenth(map, latitude, longitude) {
     const start = point([22.4703451, 51.6654197]);
     const stop = point([lngMid, latMid]);
     const subline = lineSlice(start, stop, stringRewLewaStr);
-    let sublineLength = length(subline, { units: "kilometers" });
+    let sublineLength = length(subline, { units: "kilometers" }) * fix;
     sublineLength = sublineLength.toFixed(3);
     sublineLength = sublineLength.toString().replace('.', ' + ');
     let popCon = `<a href=https://www.google.com/maps?q=${latMid},${lngMid} target=blank>km ${sublineLength}</a>`;
