@@ -3,10 +3,12 @@ import 'leaflet-geometryutil';
 import { point, lineSlice, length, lineString } from "@turf/turf";
 import { prawaStr, lewaStr } from './Points';
 
+let pointC;
+const fix = 0.998980502102;
 
 // Funkcja obliczająca długość linii
 export function lineLenth(map, latitude, longitude) {
-    const fix = 0.998980502102;
+    
     const poi = L.latLng(latitude, longitude);
     const closestPointL = L.GeometryUtil.closest(map, lewaStr, poi);
     const closestPointP = L.GeometryUtil.closest(map, prawaStr, poi);
@@ -21,7 +23,6 @@ export function lineLenth(map, latitude, longitude) {
     sublineLength = sublineLength.toFixed(3);
     sublineLength = sublineLength.toString().replace('.', ' + ');
     let popCon = `<a href=https://www.google.com/maps?q=${latMid},${lngMid} target=blank>km ${sublineLength}</a>`;
-    let pointC; //punkt środka pasa rozdziału
     if(pointC) { map.removeLayer(pointC); pointC = null};
     pointC = L.circleMarker([latMid, lngMid], { color: '#2dabab', radius: 10, fillOpacity: 1 }).addTo(map).bindPopup(`<b>${popCon}</b>`);
     return {
