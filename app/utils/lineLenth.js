@@ -22,7 +22,7 @@ export function lineLenth(map, latitude, longitude) {
     sublineLength = sublineLength.toString().replace('.', ' + ');
     let popCon = `<a href=https://www.google.com/maps?q=${latMid},${lngMid} target=blank>km ${sublineLength}</a>`;
     let pointC; //punkt środka pasa rozdziału
-    pointC ? map.removeLayer(pointC) : null;
+    if(pointC) { map.removeLayer(pointC); pointC = null};
     pointC = L.circleMarker([latMid, lngMid], { color: '#2dabab', radius: 10, fillOpacity: 1 }).addTo(map).bindPopup(`<b>${popCon}</b>`);
     return {
         length: sublineLength
