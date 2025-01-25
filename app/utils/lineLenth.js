@@ -8,7 +8,6 @@ const fix = 0.998980502102;
 
 // Funkcja obliczająca długość linii
 export function lineLenth(map, latitude, longitude) {
-    
     const poi = L.latLng(latitude, longitude);
     const closestPointL = L.GeometryUtil.closest(map, lewaStr, poi);
     const closestPointP = L.GeometryUtil.closest(map, prawaStr, poi);

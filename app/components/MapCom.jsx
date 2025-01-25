@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
 import { prawaStr, lewaStr, polylineStyle } from "../utils/Points";
 import Recta from "./Recta";
+import MapsSelect from "./MapsSelect"; // Import komponentu
 import "leaflet.fullscreen/Control.FullScreen.css";
 import "leaflet/dist/leaflet.css";
 import "leaflet.fullscreen";
@@ -16,14 +17,14 @@ L.Icon.Default.mergeOptions({
     iconUrl: '/images/marker-icon.png',
     shadowUrl: '/images/marker-shadow.png',
 });
-// Komponent do obliczania długości linii
+
 const LineLengthCalculator = ({ latitude, longitude, setResult }) => {
-    const map = useMap(); // Uzyskaj dostęp do instancji mapy
+    const map = useMap();
     useEffect(() => {
         if (map && latitude && longitude) {
             try {
-                const result = lineLenth(map, latitude, longitude); // Oblicz długość linii
-                setResult(result); // Przekaż wynik do komponentu nadrzędnego
+                const result = lineLenth(map, latitude, longitude);
+                setResult(result);
             } catch (error) {
                 console.error("Błąd obliczeń:", error);
             }
@@ -35,7 +36,8 @@ const LineLengthCalculator = ({ latitude, longitude, setResult }) => {
 const MapComponent = () => {
     const [location, setLocation] = useState(null);
     const [watchId, setWatchId] = useState(null);
-    const [result, setResult] = useState(null); // Stan przechowujący wynik obliczeń
+    const [result, setResult] = useState(null);
+    const [mapType, setMapType] = useState("osm"); // Stan dla wyboru mapy
 
     const handleClickStart = () => {
         if (navigator.geolocation && !watchId) {
@@ -60,21 +62,53 @@ const MapComponent = () => {
             setWatchId(id);
         }
     };
+
     const handleClickStop = () => {
         if (watchId !== null) {
             navigator.geolocation.clearWatch(watchId);
             setWatchId(null);
         }
     };
+
+    const getTileLayerConfig = () => {
+        switch (mapType) {
+            case "osm":
+                return {
+                    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    maxZoom: 19,
+                };
+            case "sat":
+                return {
+                    url: "https://mt0.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
+                    maxZoom: 20,
+                };
+            case "str":
+                return {
+                    url: "https://mt0.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+                    maxZoom: 20,
+                };
+            default:
+                return {
+                    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    maxZoom: 19,
+                };
+        }
+    };
+
     return (
         <div>
+            <MapsSelect onChange={(value) => setMapType(value)} />
             <div>
                 {result ? (
-                    <div id='info'>
-                        <p>KM: <span className="data">{result.length}</span></p>
+                    <div id="info">
+                        <p>
+                            KM: <span className="data">{result.length}</span>
+                        </p>
                     </div>
                 ) : (
-                    <p>KM: <span className="data">brak danych</span></p>
+                    <p>
+                        KM: <span className="data">brak danych</span>
+                    </p>
                 )}
             </div>
             <button className="start" onClick={handleClickStart} style={{ marginRight: "10px" }}>
@@ -90,7 +124,11 @@ const MapComponent = () => {
                     style={{ height: "60vh", width: "100%" }}
                     fullscreenControl={true}
                 >
-                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                    {(() => {
+                        const { url, maxZoom } = getTileLayerConfig();
+                        return <TileLayer url={url} maxZoom={maxZoom} attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors' />;
+                    })()}
+
                     {location && (
                         <>
                             <Marker position={location}>
@@ -124,5 +162,5 @@ const CenterMap = ({ location }) => {
     }, [location, map]);
     return null;
 };
-export default MapComponent;
 
+export default MapComponent;
