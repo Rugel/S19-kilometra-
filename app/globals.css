@@ -94,11 +94,12 @@
 #footer {
   position: absolute;
   bottom: 0;
-  left: -1vw;
+  left: 0;
   right: 0;
+  margin: auto;
   z-index: 9999;
   border: solid 1px;
-  width: 110%;
+  width: 100%;
   text-align: center;
   font-size: 16px;
   background-color: lightgrey;
