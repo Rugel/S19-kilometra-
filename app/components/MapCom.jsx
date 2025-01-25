@@ -16,11 +16,9 @@ L.Icon.Default.mergeOptions({
     iconUrl: '/images/marker-icon.png',
     shadowUrl: '/images/marker-shadow.png',
 });
-
 // Komponent do obliczania długości linii
 const LineLengthCalculator = ({ latitude, longitude, setResult }) => {
     const map = useMap(); // Uzyskaj dostęp do instancji mapy
-
     useEffect(() => {
         if (map && latitude && longitude) {
             try {
@@ -31,7 +29,6 @@ const LineLengthCalculator = ({ latitude, longitude, setResult }) => {
             }
         }
     }, [map, latitude, longitude, setResult]);
-
     return null;
 };
 
@@ -41,7 +38,7 @@ const MapComponent = () => {
     const [result, setResult] = useState(null); // Stan przechowujący wynik obliczeń
 
     const handleClickStart = () => {
-        if (navigator.geolocation) {
+        if (navigator.geolocation && !watchId) {
             const id = navigator.geolocation.watchPosition(
                 (position) => {
                     const userLocation = {
@@ -61,18 +58,14 @@ const MapComponent = () => {
                 }
             );
             setWatchId(id);
-        } else {
-            alert("Geolokalizacja nie jest obsługiwana przez tę przeglądarkę.");
         }
     };
-
     const handleClickStop = () => {
         if (watchId !== null) {
             navigator.geolocation.clearWatch(watchId);
             setWatchId(null);
         }
     };
-
     return (
         <div>
             <div>
@@ -126,11 +119,10 @@ const CenterMap = ({ location }) => {
     const map = useMap();
     useEffect(() => {
         if (location) {
-            map.flyTo(location, 13, { animate: true });
+            map.flyTo(location, 18, { animate: true });
         }
     }, [location, map]);
     return null;
 };
-
 export default MapComponent;
 
