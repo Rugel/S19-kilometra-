@@ -3,7 +3,7 @@ export default function MapsSelect({ onChange }) {
         <div className="maps">
             <fieldset>
                 <legend className="view">
-                    <i>Wybór mapy</i>
+                    wybór mapy
                 </legend>
                 <div className="view">
                     <input

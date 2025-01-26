@@ -1,7 +1,6 @@
 'use client';
 import React from 'react';
-//import MapsSelect from "./components/MapsSelect";
-import GeoLink from "./components/GeoLink";
+//import GeoLink from "./components/GeoLink";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import 'leaflet/dist/leaflet.css';
@@ -15,8 +14,7 @@ export default function Home() {
     <div id="contener">
       <div id="content">
         <Header />
-        {/*<MapsSelect />*/}
-        <GeoLink />
+        {/*<GeoLink />*/}
         <MapComponent />
         <Footer />
       </div></div>

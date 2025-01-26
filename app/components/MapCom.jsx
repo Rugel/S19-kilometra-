@@ -10,6 +10,7 @@ import "leaflet/dist/leaflet.css";
 import "leaflet.fullscreen";
 import L from "leaflet";
 import { lineLenth } from "../utils/lineLenth";
+import GeoLink from './GeoLink';
 
 // Konfiguracja ikon Leaflet
 L.Icon.Default.mergeOptions({
@@ -72,11 +73,6 @@ const MapComponent = () => {
 
     const getTileLayerConfig = () => {
         switch (mapType) {
-            case "osm":
-                return {
-                    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                    maxZoom: 19,
-                };
             case "sat":
                 return {
                     url: "https://mt0.google.com/vt/lyrs=y&x={x}&y={y}&z={z}",
@@ -97,25 +93,27 @@ const MapComponent = () => {
 
     return (
         <div>
+            <div id="link">
+                {location ? <GeoLink location={location} /> : <a href="https://mapy.geoportal.gov.pl/mobile/#fullExtent&1737922676017" target="blank">dodatkowe dane w serwisie Geoportal</a>}
+            </div>
+
             <MapsSelect onChange={(value) => setMapType(value)} />
-            <div>
+            <div id="info">
                 {result ? (
-                    <div id="info">
-                        <p>
-                            KM: <span className="data">{result.length}</span>
-                        </p>
-                    </div>
+                    <p>
+                        KM: <span className="data">{result.length}</span>
+                    </p>
                 ) : (
                     <p>
-                        KM: <span className="data">brak danych</span>
+                        KM: <span className="data" style={{ fontWeight: 100, color: "grey" }}>brak danych</span>
                     </p>
                 )}
             </div>
             <button className="start" onClick={handleClickStart} style={{ marginRight: "10px" }}>
-                Start
+                START
             </button>
             <button className="stop" onClick={handleClickStop}>
-                Stop
+                STOP
             </button>
             <div id="map">
                 <MapContainer
@@ -133,7 +131,7 @@ const MapComponent = () => {
                         <>
                             <Marker position={location}>
                                 <Popup>
-                                    Twoja lokalizacja: {location.lat.toFixed(5)}, {location.lng.toFixed(5)}
+                                    lat: {location.lat.toFixed(7)}<br />lng: {location.lng.toFixed(7)}
                                 </Popup>
                             </Marker>
                             <CenterMap location={location} />
