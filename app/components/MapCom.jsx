@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, CircleMarker } from "react-leaflet";
 import { prawaStr, lewaStr, polylineStyle } from "../utils/Points";
 import Recta from "./Recta";
 import MapsSelect from "./MapsSelect"; // Import komponentu
@@ -18,6 +18,9 @@ L.Icon.Default.mergeOptions({
     iconUrl: '/images/marker-icon.png',
     shadowUrl: '/images/marker-shadow.png',
 });
+
+const office = L.icon({ iconUrl: '/images/office.png' });
+
 
 const LineLengthCalculator = ({ latitude, longitude, setResult }) => {
     const map = useMap();
@@ -129,11 +132,18 @@ const MapComponent = () => {
 
                     {location && (
                         <>
-                            <Marker position={location}>
+                            <CircleMarker
+                                center={[location.lat, location.lng]}
+                                radius={10}
+                                pathOptions={{
+                                    color: "#2dabab",
+                                }}
+                            >
                                 <Popup>
-                                    lat: {location.lat.toFixed(7)}<br />lng: {location.lng.toFixed(7)}
+                                    twoja lokalizacja:<br />lat: {location.lat}<br />lng: {location.lng}
                                 </Popup>
-                            </Marker>
+                            </CircleMarker>
+
                             <CenterMap location={location} />
                             <LineLengthCalculator
                                 latitude={location.lat}
@@ -145,6 +155,9 @@ const MapComponent = () => {
                     <Recta />
                     <Polyline positions={prawaStr} pathOptions={polylineStyle} />
                     <Polyline positions={lewaStr} pathOptions={polylineStyle} />
+                    <Marker position={[51.6391316, 22.4452260]} icon={office}>
+                        <Popup><a href='https://www.google.com/maps/dir/?api=1&destination=51.6391316,22.4452260' target='blank'>POLAQUA - biuro budowy Obwodnicy Kocka</a></Popup>
+                    </Marker>
                 </MapContainer>
             </div>
         </div>
