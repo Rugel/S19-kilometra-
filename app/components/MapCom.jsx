@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, CircleMarker } from "react-leaflet";
 import { prawaStr, lewaStr, polylineStyle } from "../utils/Points";
 import Recta from "./Recta";
-import MapsSelect from "./MapsSelect"; // Import komponentu
+import MapsSelect from "./MapsSelect";
 import "leaflet.fullscreen/Control.FullScreen.css";
 import "leaflet/dist/leaflet.css";
 import "leaflet.fullscreen";
@@ -21,6 +21,31 @@ L.Icon.Default.mergeOptions({
 
 const office = L.icon({ iconUrl: '/images/office.png' });
 
+const ClickHandler = () => {
+    const map = useMap();
+
+    useEffect(() => {
+        const handleMapClick = (e) => {
+            const { lat, lng } = e.latlng;
+            try {
+                const subline_length = lineLenth(map, lat, lng).length;
+                L.popup()
+                    .setLatLng([lat, lng])
+                    .setContent(`km ${subline_length}`)
+                    .openOn(map);
+            } catch (error) {
+                console.error("Błąd obliczeń:", error);
+            }
+        };
+
+        map.on('click', handleMapClick);
+        return () => {
+            map.off('click', handleMapClick);
+        };
+    }, [map]);
+
+    return null;
+};
 
 const LineLengthCalculator = ({ latitude, longitude, setResult }) => {
     const map = useMap();
@@ -37,11 +62,21 @@ const LineLengthCalculator = ({ latitude, longitude, setResult }) => {
     return null;
 };
 
+const CenterMap = ({ location }) => {
+    const map = useMap();
+    useEffect(() => {
+        if (location) {
+            map.flyTo(location, 18, { animate: true });
+        }
+    }, [location, map]);
+    return null;
+};
+
 const MapComponent = () => {
     const [location, setLocation] = useState(null);
     const [watchId, setWatchId] = useState(null);
     const [result, setResult] = useState(null);
-    const [mapType, setMapType] = useState("osm"); // Stan dla wyboru mapy
+    const [mapType, setMapType] = useState("osm");
 
     const handleClickStart = () => {
         if (navigator.geolocation && !watchId) {
@@ -97,10 +132,16 @@ const MapComponent = () => {
     return (
         <div>
             <div id="link">
-                {location ? <GeoLink location={location} /> : <a href="https://mapy.geoportal.gov.pl/mobile/#fullExtent&1737922676017" target="blank">dodatkowe dane w serwisie Geoportal</a>}
+                {location ?
+                    <GeoLink location={location} /> :
+                    <a href="https://mapy.geoportal.gov.pl/mobile/#fullExtent&1737922676017" target="blank">
+                        dodatkowe dane w serwisie Geoportal
+                    </a>
+                }
             </div>
 
             <MapsSelect onChange={(value) => setMapType(value)} />
+
             <div id="info">
                 {result ? (
                     <p>
@@ -108,16 +149,20 @@ const MapComponent = () => {
                     </p>
                 ) : (
                     <p>
-                        KM: <span className="data" style={{ fontWeight: 100, color: "grey" }}>brak danych</span>
+                        KM: <span className="data" style={{ fontWeight: 100, color: "grey" }}>
+                            brak danych
+                        </span>
                     </p>
                 )}
             </div>
+
             <button className="start" onClick={handleClickStart} style={{ marginRight: "10px" }}>
                 START
             </button>
             <button className="stop" onClick={handleClickStop}>
                 STOP
             </button>
+
             <div id="map">
                 <MapContainer
                     center={[51.631805, 22.46528]}
@@ -125,9 +170,17 @@ const MapComponent = () => {
                     style={{ height: "60vh", width: "100%" }}
                     fullscreenControl={true}
                 >
+                    <ClickHandler />
+
                     {(() => {
                         const { url, maxZoom } = getTileLayerConfig();
-                        return <TileLayer url={url} maxZoom={maxZoom} attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors' />;
+                        return (
+                            <TileLayer
+                                url={url}
+                                maxZoom={maxZoom}
+                                attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+                            />
+                        );
                     })()}
 
                     {location && (
@@ -140,7 +193,9 @@ const MapComponent = () => {
                                 }}
                             >
                                 <Popup>
-                                    twoja lokalizacja:<br />lat: {location.lat}<br />lng: {location.lng}
+                                    twoja lokalizacja:<br />
+                                    lat: {location.lat}<br />
+                                    lng: {location.lng}
                                 </Popup>
                             </CircleMarker>
 
@@ -152,26 +207,26 @@ const MapComponent = () => {
                             />
                         </>
                     )}
+
                     <Recta />
                     <Polyline positions={prawaStr} pathOptions={polylineStyle} />
                     <Polyline positions={lewaStr} pathOptions={polylineStyle} />
+
                     <Marker position={[51.6391316, 22.4452260]} icon={office}>
-                        <Popup><a href='https://www.google.com/maps/dir/?api=1&destination=51.6391316,22.4452260' target='blank'>POLAQUA - biuro budowy Obwodnicy Kocka</a></Popup>
+                        <Popup>
+                            <a
+                                href='https://www.google.com/maps/dir/?api=1&destination=51.6391316,22.4452260'
+                                target='blank'
+                                rel="noopener noreferrer"
+                            >
+                                POLAQUA - biuro budowy Obwodnicy Kocka
+                            </a>
+                        </Popup>
                     </Marker>
                 </MapContainer>
             </div>
         </div>
     );
-};
-
-const CenterMap = ({ location }) => {
-    const map = useMap();
-    useEffect(() => {
-        if (location) {
-            map.flyTo(location, 18, { animate: true });
-        }
-    }, [location, map]);
-    return null;
 };
 
 export default MapComponent;
