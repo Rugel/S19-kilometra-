@@ -11,6 +11,7 @@ import "leaflet.fullscreen";
 import L from "leaflet";
 import { lineLenth } from "../utils/lineLenth";
 import GeoLink from './GeoLink';
+import CustomAttribution from './CustomAttribution';
 
 // Konfiguracja ikon Leaflet
 L.Icon.Default.mergeOptions({
@@ -175,11 +176,14 @@ const MapComponent = () => {
                     {(() => {
                         const { url, maxZoom } = getTileLayerConfig();
                         return (
-                            <TileLayer
+                            <>  <TileLayer
                                 url={url}
                                 maxZoom={maxZoom}
-                                attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+                                attributionControl={false}
+                                attributionPosition="topright"
                             />
+                                <CustomAttribution />
+                            </>
                         );
                     })()}
 

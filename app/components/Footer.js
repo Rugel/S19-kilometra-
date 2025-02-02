@@ -6,6 +6,6 @@ const year = data.getFullYear();
 export default function Footer(){
     
     return(
-        <div id="footer"><b>* {year} * S19 Kock * </b></div>
+        <div id="footer"><b>* {year} * S19 — obwodnica Kocka * </b></div>
     )
 }
