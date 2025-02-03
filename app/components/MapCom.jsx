@@ -20,7 +20,7 @@ L.Icon.Default.mergeOptions({
     shadowUrl: '/images/marker-shadow.png',
 });
 
-const office = L.icon({ iconUrl: '/images/office.png' });
+const office = L.icon({ iconUrl: '/images/office.png', iconAnchor: [42, 42], });
 
 const ClickHandler = () => {
     const map = useMap();
@@ -44,7 +44,6 @@ const ClickHandler = () => {
             map.off('click', handleMapClick);
         };
     }, [map]);
-
     return null;
 };
 
@@ -140,9 +139,7 @@ const MapComponent = () => {
                     </a>
                 }
             </div>
-
             <MapsSelect onChange={(value) => setMapType(value)} />
-
             <div id="info">
                 {result ? (
                     <p>
@@ -156,14 +153,12 @@ const MapComponent = () => {
                     </p>
                 )}
             </div>
-
             <button className="start" onClick={handleClickStart} style={{ marginRight: "10px" }}>
                 START
             </button>
             <button className="stop" onClick={handleClickStop}>
                 STOP
             </button>
-
             <div id="map">
                 <MapContainer
                     center={[51.631805, 22.46528]}
@@ -172,7 +167,6 @@ const MapComponent = () => {
                     fullscreenControl={true}
                 >
                     <ClickHandler />
-
                     {(() => {
                         const { url, maxZoom } = getTileLayerConfig();
                         return (
@@ -186,7 +180,6 @@ const MapComponent = () => {
                             </>
                         );
                     })()}
-
                     {location && (
                         <>
                             <CircleMarker
@@ -202,7 +195,6 @@ const MapComponent = () => {
                                     lng: {location.lng}
                                 </Popup>
                             </CircleMarker>
-
                             <CenterMap location={location} />
                             <LineLengthCalculator
                                 latitude={location.lat}
@@ -211,11 +203,9 @@ const MapComponent = () => {
                             />
                         </>
                     )}
-
                     <Recta />
                     <Polyline positions={prawaStr} pathOptions={polylineStyle} />
                     <Polyline positions={lewaStr} pathOptions={polylineStyle} />
-
                     <Marker position={[51.6391316, 22.4452260]} icon={office}>
                         <Popup>
                             <a
@@ -223,7 +213,7 @@ const MapComponent = () => {
                                 target='blank'
                                 rel="noopener noreferrer"
                             >
-                                POLAQUA - biuro budowy Obwodnicy Kocka
+                                POLAQUA - biuro budowy
                             </a>
                         </Popup>
                     </Marker>

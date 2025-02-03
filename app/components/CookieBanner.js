@@ -8,7 +8,7 @@ export const CookieBanner = () => (
     buttonText="Akceptuję"
     declineButtonText="Odrzuć"
     cookieName="cookieConsent"
-    style={{ background: '#1f2937'}}
+    style={{ background: '#07080B'}}
     buttonStyle={{ background: '#3b82f6', color: 'white', borderRadius: '4px' }}
     declineButtonStyle={{ background: '#ef4444', color: 'white', borderRadius: '4px' }}
     expires={365}

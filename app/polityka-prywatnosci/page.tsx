@@ -1,8 +1,8 @@
 import React from "react";
 import Footer from "../components/Footer";
 
-const Cookies_info = () => <div> <div className="cookies">
-    <h1>Informacja o plikach cookies</h1><br />
+const Cookies_info = () => <div className="contener"> <div className="cookies">
+    <h1 className="header" style={{backgroundColor:'lightblue', textAlign:'center', padding:'15px', borderRadius:'2em'}}>Informacja o plikach cookies</h1><br />
     <h3>Czym są pliki cookies?</h3>
     <p>Pliki cookies (tzw. „ciasteczka”) to niewielkie pliki tekstowe zapisywane i przechowywane na urządzeniu końcowym użytkownika (np. komputerze, smartfonie czy tablecie) podczas przeglądania stron internetowych. Pliki te są powszechnie stosowane w celu poprawy funkcjonalności stron internetowych, dostarczania spersonalizowanych treści oraz analizowania ruchu na stronie.</p><br />
 

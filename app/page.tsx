@@ -11,7 +11,7 @@ const MapComponent = dynamic(() => import('./components/MapCom'), { ssr: false, 
 export default function Home() {
 
   return (
-    <div id="contener">
+    <div className="contener">
       <div id="content">
         <Header />
         <MapComponent />
