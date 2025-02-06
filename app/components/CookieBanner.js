@@ -9,8 +9,8 @@ export const CookieBanner = () => (
     declineButtonText="Odrzuć"
     cookieName="cookieConsent"
     style={{ background: '#07080B'}}
-    buttonStyle={{ background: '#3b82f6', color: 'white', borderRadius: '4px' }}
-    declineButtonStyle={{ background: '#ef4444', color: 'white', borderRadius: '4px' }}
+    buttonStyle={{ background: 'blue', color: 'white', borderRadius: '4px', fontWeight:600 }}
+    declineButtonStyle={{ background: 'red', color: 'white', borderRadius: '4px',fontWeight:600 }}
     expires={365}
     enableDeclineButton
     overlay
@@ -20,7 +20,7 @@ export const CookieBanner = () => (
     }}
   >
     Strona używa plików cookies. Więcej w{' '}
-    <a href="/polityka-prywatnosci" className="text-blue-300 underline">
+    <a href="/polityka-prywatnosci" className="cookieLink">
       polityce prywatności
     </a>.
   </CookieConsent>

@@ -148,9 +148,13 @@ label {
   margin-right: 3%;
 }
 
-#link {
+.link {
   font-size: .8rem;
   padding: .5rem;
+}
+
+.cookieLink{
+  color: lightskyblue;
 }
 
 .data{

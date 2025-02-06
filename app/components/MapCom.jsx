@@ -131,7 +131,7 @@ const MapComponent = () => {
 
     return (
         <div>
-            <div id="link">
+            <div className="link">
                 {location ?
                     <GeoLink location={location} /> :
                     <a href="https://mapy.geoportal.gov.pl/mobile/#fullExtent&1737922676017" target="blank">
