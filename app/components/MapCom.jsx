@@ -153,17 +153,17 @@ const MapComponent = () => {
                     </p>
                 )}
             </div>
-            <button className="start" onClick={handleClickStart} style={{ marginRight: "10px" }}>
+            <button className="tap" onClick={handleClickStart} style={{ marginRight: "10px", color: "white" }}>
                 START
             </button>
-            <button className="stop" onClick={handleClickStop}>
+            <button className="tap" onClick={handleClickStop}>
                 STOP
             </button>
             <div id="map">
                 <MapContainer
                     center={[51.631805, 22.46528]}
                     zoom={12}
-                    style={{ height: "60vh", width: "100%" }}
+                    style={{ height: "62vh", width: "100%" }}
                     fullscreenControl={true}
                 >
                     <ClickHandler />
