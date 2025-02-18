@@ -1,5 +1,4 @@
-'use client'
-
+'use client';
 import CookieConsent from 'react-cookie-consent'
 
 export const CookieBanner = () => (

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "S19 - Kock - odczyt kilometrażu",
-  description: "Odczyt kilometrażu na budowie S19 - Obwodnica Kocka i Woli Skromowskiej za pomocą smartfona z modułem GPS",
+  title: "S19 Kock — kilometraż na budowie obwodnicy Kocka i Woli Skromowskiej",
+  description: "Odczyt kilometrażu na budowie S19 — Obwodnica Kocka i Woli Skromowskiej za pomocą smartfona z modułem GPS. Plan budowy na mapie.",
 };
 
 export default function RootLayout({

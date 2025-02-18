@@ -1,5 +1,4 @@
-'use client'
-
+'use client';
 import { useMap } from 'react-leaflet'
 import { useEffect } from 'react'
 
