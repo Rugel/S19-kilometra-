@@ -140,3 +140,20 @@ label {
   width: 80%;
   text-align: left;
 }
+
+.textIcon{
+  min-width: 4rem;
+  height: 1.2rem;
+  border: solid 2px black;
+  margin: 6px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.leaflet-div-icon {
+  border-radius: 50%;
+  border: none;
+  height: 8px !important;
+  width: 8px !important;
+  background-color: blue !important;
+}

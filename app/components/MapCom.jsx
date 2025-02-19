@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, CircleMarker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, CircleMarker, textIcon } from "react-leaflet";
 import { prawaStr, lewaStr, polylineStyle } from "../utils/Points";
 import Recta from "./Recta";
 import MapsSelect from "./MapsSelect";
@@ -71,6 +71,7 @@ const CenterMap = ({ location }) => {
     return null;
 };
 
+
 const MapComponent = () => {
     const [location, setLocation] = useState(null);
     const [watchId, setWatchId] = useState(null);
@@ -127,6 +128,13 @@ const MapComponent = () => {
                 };
         }
     };
+
+    const TextIcon = (text) => {
+        return L.divIcon({
+            html: `<div class="textIcon">${text}</div>`
+        })
+    }
+
 
     return (
         <div>
@@ -216,6 +224,18 @@ const MapComponent = () => {
                             </a>
                         </Popup>
                     </Marker>
+                    <Marker position={[51.658809, 22.463883]} icon={TextIcon('WD-1')} ></Marker>
+                    <Marker position={[51.650344, 22.463754]} icon={TextIcon('PZM-1A')} ></Marker>
+                    <Marker position={[51.640301, 22.460756]} icon={TextIcon('PZM-1B')} ></Marker>
+                    <Marker position={[51.637621, 22.459265]} icon={TextIcon('PZM-1C')} ></Marker>
+                    <Marker position={[51.637262, 22.459037]} icon={TextIcon('WD-2')} ></Marker>
+                    <Marker position={[51.635451, 22.458071]} icon={TextIcon('PZM-2A')} ></Marker>
+                    <Marker position={[51.630362, 22.456805]} icon={TextIcon('MS-3')} ></Marker>
+                    <Marker position={[51.621980, 22.458954]} icon={TextIcon('PZM-3A')} ></Marker>
+                    <Marker position={[51.619527, 22.460383]} icon={TextIcon('WD-4')} ></Marker>
+                    <Marker position={[51.612672, 22.464592]} icon={TextIcon('MS-5')} ></Marker>
+                    <Marker position={[51.606656, 22.468223]} icon={TextIcon('WS-5B')} ></Marker>
+                    <Marker position={[51.604772, 22.469382]} icon={TextIcon('WD-6')} ></Marker>
                 </MapContainer>
             </div>
         </div>
