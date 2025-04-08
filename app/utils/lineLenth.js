@@ -5,7 +5,7 @@ import { prawaStr, lewaStr } from './Points';
 
 let pointC;
 //const fix = 0.998980502102;
-const fix = 1.0012;
+const fix = 1.0015;
 
 // Funkcja obliczająca długość linii
 export function lineLenth(map, latitude, longitude) {
