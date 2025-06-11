@@ -24,7 +24,7 @@
 #content {
   min-height: 32vh;
   text-align: center;
-  font-weight: bold;
+  font-weight: 300;
   font-size: 1.2rem;
   margin: 0vh;
   flex-grow: 1;

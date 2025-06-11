@@ -6,7 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import dynamic from 'next/dynamic';
 import { CookieBanner } from './components/CookieBanner';
 
-const MapComponent = dynamic(() => import('./components/MapCom'), { ssr: false, });
+const MapComponent = dynamic(() => import('./components/MapComponent'), { ssr: false, });
 
 export default function Home() {
 
