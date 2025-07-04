@@ -230,10 +230,11 @@ const MapComponent = () => {
                     <Marker position={[51.637621, 22.459265]} icon={TextIcon('PZM-1C')} ></Marker>
                     <Marker position={[51.637262, 22.459037]} icon={TextIcon('WD-2')} ></Marker>
                     <Marker position={[51.635451, 22.458071]} icon={TextIcon('PZM-2A')} ></Marker>
-                    <Marker position={[51.630362, 22.456805]} icon={TextIcon('MS-3')} ></Marker>
+                    <Marker position={[51.630562, 22.456661]} icon={TextIcon('MS-3')} ></Marker>
                     <Marker position={[51.621980, 22.458954]} icon={TextIcon('PZM-3A')} ></Marker>
                     <Marker position={[51.619527, 22.460383]} icon={TextIcon('WD-4')} ></Marker>
                     <Marker position={[51.612672, 22.464592]} icon={TextIcon('MS-5')} ></Marker>
+                    <Marker position={[51.609821, 22.466218]} icon={TextIcon('WS-5A')} ></Marker>
                     <Marker position={[51.606656, 22.468223]} icon={TextIcon('WS-5B')} ></Marker>
                     <Marker position={[51.604772, 22.469382]} icon={TextIcon('WD-6')} ></Marker>
                 </MapContainer>
