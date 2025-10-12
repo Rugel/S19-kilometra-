@@ -4,7 +4,8 @@ import { point, lineSlice, length, lineString } from "@turf/turf";
 import { prawaStr, lewaStr } from './Points';
 
 let pointC;
-const fix = 0.998980502102;
+//const fix = 0.998980502102;
+const fix = 1.002;
 
 // Funkcja obliczająca długość linii
 export function lineLenth(map, latitude, longitude) {
