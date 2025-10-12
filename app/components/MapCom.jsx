@@ -160,12 +160,26 @@ const MapComponent = () => {
                     </p>
                 )}
             </div>
-            <button className="tap" onClick={handleClickStart} style={{ marginRight: "10px", color: "white" }}>
-                START
+            <button
+                className="tap"
+                onClick={() => {
+                    if (watchId) {
+                        handleClickStop();
+                    } else {
+                        handleClickStart();
+                    }
+                }}
+                style={{
+                    marginRight: "10px",
+                    color: "white",
+                    backgroundColor: watchId ? "red" : "green",
+                    transition: "background-color 0.3s",
+                }}
+            >
+                {watchId ? "STOP" : "START"}
             </button>
-            <button className="tap" onClick={handleClickStop}>
-                STOP
-            </button>
+
+
             <div id="map">
                 <MapContainer
                     center={[51.631805, 22.46528]}
@@ -236,6 +250,9 @@ const MapComponent = () => {
                     <Marker position={[51.612672, 22.464592]} icon={TextIcon('MS-5')} ></Marker>
                     <Marker position={[51.606656, 22.468223]} icon={TextIcon('WS-5B')} ></Marker>
                     <Marker position={[51.604772, 22.469382]} icon={TextIcon('WD-6')} ></Marker>
+                    <Marker position={[51.659413, 22.467526]} icon={TextIcon('R-1')} ></Marker>
+                    <Marker position={[51.655238, 22.456768]} icon={TextIcon('R-2')} ></Marker>
+                    <Marker position={[51.604345, 22.467462]} icon={TextIcon('R-3')} ></Marker>
                 </MapContainer>
             </div>
         </div>
