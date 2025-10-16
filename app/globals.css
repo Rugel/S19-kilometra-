@@ -146,6 +146,7 @@ label {
 .textIcon{
   min-width: 4rem;
   height: 1.2rem;
+  font-size: .67rem;
   border: solid 2px black;
   margin: 6px;
   background-color: white;

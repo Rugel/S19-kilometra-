@@ -338,7 +338,7 @@ const CenterMap = ({ location }) => {
         if (location) {
             const current = L.latLng(location.lat, location.lng);
             if (!lastCenter.current || current.distanceTo(lastCenter.current) > 3) { // tylko gdy różnica >3 m
-                map.panTo(current, { animate: true, duration: 1 });
+                map.flyTo(current, 19, { animate: true, duration: 1 });
                 lastCenter.current = current;
             }
         }
