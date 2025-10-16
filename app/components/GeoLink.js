@@ -28,7 +28,7 @@ export default function GeoLink({ location }) {
     return (
         <p>
             <a href={geoportalUrl} target="blank">
-                dodatkowe dane w serwisie Geoportal
+                Geoportal - mapa z uzbrojeniem terenu
             </a>
         </p>
     );

@@ -30,7 +30,7 @@
 }
 
 .header {
-  padding-top: 2vh;
+  padding: 2vh;
   text-shadow: 3px 5px 10px;
   font-size: .72rem;
 }
@@ -110,7 +110,7 @@ label {
 
 .link {
   font-size: .8rem;
-  padding: .5rem;
+  padding: .1rem;
 }
 
 .cookieLink {
