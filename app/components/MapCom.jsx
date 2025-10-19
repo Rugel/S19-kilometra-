@@ -60,7 +60,7 @@ const LineLengthCalculator = ({ latitude, longitude, setResult }) => {
     return null;
 };
 
-// 🧭 Poprawione centrowanie mapy
+// Poprawione centrowanie mapy
 const CenterMap = ({ location }) => {
     const map = useMap();
     const lastCenter = useRef(null);
@@ -69,7 +69,7 @@ const CenterMap = ({ location }) => {
         if (location) {
             const current = L.latLng(location.lat, location.lng);
             if (!lastCenter.current || current.distanceTo(lastCenter.current) > 3) { // tylko gdy różnica >3 m
-                map.flyTo(current, 19, { animate: true, duration: 1 });
+                map.flyTo(current, 19, { animate: true, duration: 1.6 });
                 lastCenter.current = current;
             }
         }
