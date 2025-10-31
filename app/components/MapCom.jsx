@@ -60,18 +60,12 @@ const LineLengthCalculator = ({ latitude, longitude, setResult }) => {
     return null;
 };
 
-// Poprawione centrowanie mapy
 const CenterMap = ({ location }) => {
     const map = useMap();
-    const lastCenter = useRef(null);
 
     useEffect(() => {
         if (location) {
-            const current = L.latLng(location.lat, location.lng);
-            if (!lastCenter.current || current.distanceTo(lastCenter.current) > 3) { // tylko gdy różnica >3 m
-                map.flyTo(current, 17, { animate: true, duration: 1.6 });
-                lastCenter.current = current;
-            }
+            map.flyTo(location, 17, { animate: true, duration: 1.6 });
         }
     }, [location, map]);
 
