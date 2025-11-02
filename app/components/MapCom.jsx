@@ -65,7 +65,7 @@ const CenterMap = ({ location }) => {
 
     useEffect(() => {
         if (location) {
-            map.flyTo(location, 17, { animate: true, duration: 1.6 });
+            map.flyTo(location, 17, { animate: true });
         }
     }, [location, map]);
 
