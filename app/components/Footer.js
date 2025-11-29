@@ -6,7 +6,7 @@ const year = data.getFullYear();
 export default function Footer() {
     return (
         <footer id="footer">
-            &copy; 2024 S19 Kock - Wola Skromowska
+            &copy; {year} *** S19 Kock - Wola Skromowska ***
         </footer>
     );
 }
