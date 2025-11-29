@@ -63,7 +63,7 @@ body {
     min-height: 100vh;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-md);
+    padding: 0 var(--spacing-xs);
     background-color: var(--card-background);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 }
@@ -327,7 +327,7 @@ a:hover {
     }
 
     .header {
-        padding: var(--spacing-xs) 0;
+        padding: var(--spacing-xs) var(--spacing-xs);
         margin-bottom: var(--spacing-xs);
     }
 
@@ -348,7 +348,7 @@ a:hover {
     }
 
     fieldset {
-        margin-bottom: var(--spacing-xs);
+        margin: 0 var(--spacing-xs) var(--spacing-xs);
         padding: var(--spacing-xs);
         max-width: 100%;
     }
@@ -359,7 +359,7 @@ a:hover {
     }
 
     #info {
-        margin-bottom: var(--spacing-xs);
+        margin: 0 var(--spacing-xs) var(--spacing-xs);
         padding: var(--spacing-xs);
     }
 
