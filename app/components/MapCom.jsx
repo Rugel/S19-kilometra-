@@ -10,7 +10,6 @@ import "leaflet.fullscreen";
 import L from "leaflet";
 import { lineLenth } from "../utils/lineLenth";
 import GeoLink from './GeoLink';
-import CustomAttribution from './CustomAttribution';
 
 // konfiguracja ikon
 L.Icon.Default.mergeOptions({
@@ -171,7 +170,7 @@ const MapComponent = () => {
                 )}
             </div>
 
-            <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+            <div style={{ textAlign: 'center', margin: '1rem 0' }}>
                 <button
                     className="tap"
                     onClick={() => {
@@ -202,10 +201,8 @@ const MapComponent = () => {
                                 <TileLayer
                                     url={url}
                                     maxZoom={maxZoom}
-                                    attributionControl={false}
-                                    attributionPosition="topright"
+                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                                 />
-                                <CustomAttribution />
                             </>
                         );
                     })()}
