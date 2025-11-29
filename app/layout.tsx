@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "S19 Kock — kilometraż na budowie obwodnicy Kocka i Woli Skromowskiej",
   description: "Odczyt kilometrażu na budowie S19 — Obwodnica Kocka i Woli Skromowskiej za pomocą smartfona z modułem GPS. Plan budowy na mapie.",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -14,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="PL">
       <head>
-      <script
+        <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=G-V5XJZG59LS`}
         ></script>
@@ -30,7 +33,7 @@ export default function RootLayout({
             `,
           }}
         ></script>
-      <meta name="apple-mobile-web-app-title" content="S19 - kilometraż" />
+        <meta name="apple-mobile-web-app-title" content="S19 - kilometraż" />
       </head>
       <body>
         {children}

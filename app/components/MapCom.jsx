@@ -131,13 +131,19 @@ const MapComponent = () => {
 
     const TextIcon = (text) =>
         L.divIcon({
-            html: `<div class="textIcon">${text}</div>`,
+            className: 'custom-marker-container',
+            html: `<div class="map-marker-pin">${text}</div>`,
+            iconSize: [0, 0],
+            iconAnchor: [0, 0]
         });
 
     return (
         <div>
-            <MapsSelect onChange={(value) => setMapType(value)} />
-                <div className="link">
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+                <MapsSelect onChange={(value) => setMapType(value)} />
+            </div>
+
+            <div className="link">
                 {location ? (
                     <GeoLink location={location} />
                 ) : (
@@ -158,37 +164,34 @@ const MapComponent = () => {
                 ) : (
                     <p>
                         KM:{" "}
-                        <span
-                            className="data"
-                            style={{ fontWeight: 100, color: "grey" }}
-                        >
+                        <span className="data" style={{ color: "var(--text-light)", fontWeight: 400 }}>
                             brak danych
                         </span>
                     </p>
                 )}
             </div>
 
-            <button
-                className="tap"
-                onClick={() => {
-                    if (watchId) handleClickStop();
-                    else handleClickStart();
-                }}
-                style={{
-                    marginRight: "10px",
-                    color: "white",
-                    backgroundColor: watchId ? "red" : "green",
-                    transition: "background-color 0.3s",
-                }}
-            >
-                {watchId ? "STOP" : "START"}
-            </button>
+            <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+                <button
+                    className="tap"
+                    onClick={() => {
+                        if (watchId) handleClickStop();
+                        else handleClickStart();
+                    }}
+                    style={{
+                        backgroundColor: watchId ? "var(--danger-color)" : "var(--success-color)",
+                        color: "white"
+                    }}
+                >
+                    {watchId ? "STOP" : "START"}
+                </button>
+            </div>
 
             <div id="map">
                 <MapContainer
                     center={[51.631805, 22.46528]}
                     zoom={12}
-                    style={{ height: "62vh", width: "100%" }}
+                    style={{ height: "100%", width: "100%", minHeight: "60vh" }}
                     fullscreenControl={true}
                 >
                     <ClickHandler />
