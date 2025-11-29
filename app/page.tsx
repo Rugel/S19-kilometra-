@@ -12,12 +12,11 @@ export default function Home() {
 
   return (
     <div className="contener">
-      <div id="content">
-        <Header />
-        <MapComponent />
-        <Footer />
-        <CookieBanner />
-      </div></div>
+      <Header />
+      <MapComponent />
+      <Footer />
+      <CookieBanner />
+    </div>
   );
 }
 
