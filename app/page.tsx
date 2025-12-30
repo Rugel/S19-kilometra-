@@ -11,14 +11,16 @@ const MapComponent = dynamic(() => import('./components/MapCom'), { ssr: false, 
 export default function Home() {
 
   return (
-    <div className="contener">
-      <div className="main-content">
-        <Header />
-        <MapComponent />
+    <>
+      <div className="contener">
+        <div className="main-content">
+          <Header />
+          <MapComponent />
+        </div>
       </div>
       <Footer />
       <CookieBanner />
-    </div>
+    </>
   );
 }
 
