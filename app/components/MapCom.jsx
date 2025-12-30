@@ -137,132 +137,136 @@ const MapComponent = () => {
         });
 
     return (
-        <div>
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
-                <MapsSelect onChange={(value) => setMapType(value)} />
-            </div>
+        <div className="map-component-wrapper">
+            <div className="content-column">
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+                    <MapsSelect onChange={(value) => setMapType(value)} />
+                </div>
 
-            <div className="link">
-                {location ? (
-                    <GeoLink location={location} />
-                ) : (
-                    <a
-                        href="https://mapy.geoportal.gov.pl/mobile/#fullExtent&1737922676017"
-                        target="blank"
+                <div className="link">
+                    {location ? (
+                        <GeoLink location={location} />
+                    ) : (
+                        <a
+                            href="https://mapy.geoportal.gov.pl/mobile/#fullExtent&1737922676017"
+                            target="blank"
+                        >
+                            Geoportal - mapa z uzbrojeniem terenu
+                        </a>
+                    )}
+                </div>
+
+                <div id="info">
+                    {result ? (
+                        <p>
+                            KM: <span className="data">{result.length}</span>
+                        </p>
+                    ) : (
+                        <p>
+                            KM:{" "}
+                            <span className="data" style={{ color: "var(--text-light)", fontWeight: 400 }}>
+                                brak danych
+                            </span>
+                        </p>
+                    )}
+                </div>
+
+                <div style={{ textAlign: 'center', margin: '1rem 0' }}>
+                    <button
+                        className="tap"
+                        onClick={() => {
+                            if (watchId) handleClickStop();
+                            else handleClickStart();
+                        }}
+                        style={{
+                            backgroundColor: watchId ? "var(--danger-color)" : "var(--success-color)",
+                            color: "white"
+                        }}
                     >
-                        Geoportal - mapa z uzbrojeniem terenu
-                    </a>
-                )}
+                        {watchId ? "STOP" : "START"}
+                    </button>
+                </div>
             </div>
 
-            <div id="info">
-                {result ? (
-                    <p>
-                        KM: <span className="data">{result.length}</span>
-                    </p>
-                ) : (
-                    <p>
-                        KM:{" "}
-                        <span className="data" style={{ color: "var(--text-light)", fontWeight: 400 }}>
-                            brak danych
-                        </span>
-                    </p>
-                )}
-            </div>
+            <div className="map-column">
+                <div id="map">
+                    <MapContainer
+                        center={[51.631805, 22.46528]}
+                        zoom={12}
+                        style={{ height: "100%", width: "100%", minHeight: "60vh" }}
+                        fullscreenControl={true}
+                    >
+                        <ClickHandler />
+                        {(() => {
+                            const { url, maxZoom } = getTileLayerConfig();
+                            return (
+                                <>
+                                    <TileLayer
+                                        url={url}
+                                        maxZoom={maxZoom}
+                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                    />
+                                </>
+                            );
+                        })()}
 
-            <div style={{ textAlign: 'center', margin: '1rem 0' }}>
-                <button
-                    className="tap"
-                    onClick={() => {
-                        if (watchId) handleClickStop();
-                        else handleClickStart();
-                    }}
-                    style={{
-                        backgroundColor: watchId ? "var(--danger-color)" : "var(--success-color)",
-                        color: "white"
-                    }}
-                >
-                    {watchId ? "STOP" : "START"}
-                </button>
-            </div>
-
-            <div id="map">
-                <MapContainer
-                    center={[51.631805, 22.46528]}
-                    zoom={12}
-                    style={{ height: "100%", width: "100%", minHeight: "60vh" }}
-                    fullscreenControl={true}
-                >
-                    <ClickHandler />
-                    {(() => {
-                        const { url, maxZoom } = getTileLayerConfig();
-                        return (
+                        {location && (
                             <>
-                                <TileLayer
-                                    url={url}
-                                    maxZoom={maxZoom}
-                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                <CircleMarker
+                                    center={[location.lat, location.lng]}
+                                    radius={10}
+                                    pathOptions={{ color: "#2dabab" }}
+                                >
+                                    <Popup>
+                                        twoja lokalizacja:
+                                        <br />
+                                        lat: {location.lat}
+                                        <br />
+                                        lng: {location.lng}
+                                    </Popup>
+                                </CircleMarker>
+                                <CenterMap location={location} />
+                                <LineLengthCalculator
+                                    latitude={location.lat}
+                                    longitude={location.lng}
+                                    setResult={setResult}
                                 />
                             </>
-                        );
-                    })()}
+                        )}
 
-                    {location && (
-                        <>
-                            <CircleMarker
-                                center={[location.lat, location.lng]}
-                                radius={10}
-                                pathOptions={{ color: "#2dabab" }}
-                            >
-                                <Popup>
-                                    twoja lokalizacja:
-                                    <br />
-                                    lat: {location.lat}
-                                    <br />
-                                    lng: {location.lng}
-                                </Popup>
-                            </CircleMarker>
-                            <CenterMap location={location} />
-                            <LineLengthCalculator
-                                latitude={location.lat}
-                                longitude={location.lng}
-                                setResult={setResult}
-                            />
-                        </>
-                    )}
+                        <Recta />
+                        <Polyline positions={prawaStr} pathOptions={polylineStyle} />
+                        <Polyline positions={lewaStr} pathOptions={polylineStyle} />
 
-                    <Recta />
-                    <Polyline positions={prawaStr} pathOptions={polylineStyle} />
-                    <Polyline positions={lewaStr} pathOptions={polylineStyle} />
-
-                    <Marker position={[51.6391316, 22.4452260]} icon={office}>
-                        <Popup>
-                            <a
-                                href="https://www.google.com/maps/dir/?api=1&destination=51.6391316,22.4452260"
-                                target="blank"
-                                rel="noopener noreferrer"
-                            >
-                                POLAQUA - biuro budowy
-                            </a>
-                        </Popup>
-                    </Marker>
-                    <Marker position={[51.658809, 22.463883]} icon={TextIcon('WD-1')} />
-                    <Marker position={[51.650344, 22.463754]} icon={TextIcon('PZM-1A')} />
-                    <Marker position={[51.640301, 22.460756]} icon={TextIcon('PZM-1B')} />
-                    <Marker position={[51.637621, 22.459265]} icon={TextIcon('PZM-1C')} />
-                    <Marker position={[51.637262, 22.459037]} icon={TextIcon('WD-2')} />
-                    <Marker position={[51.635451, 22.458071]} icon={TextIcon('PZM-2A')} />
-                    <Marker position={[51.630562, 22.456661]} icon={TextIcon('MS-3')} />
-                    <Marker position={[51.621980, 22.458954]} icon={TextIcon('PZM-3A')} />
-                    <Marker position={[51.619527, 22.460383]} icon={TextIcon('WD-4')} />
-                    <Marker position={[51.612672, 22.464592]} icon={TextIcon('MS-5')} />
-                    <Marker position={[51.609821, 22.466218]} icon={TextIcon('WS-5A')} />
-                    <Marker position={[51.606656, 22.468223]} icon={TextIcon('WS-5B')} />
-                    <Marker position={[51.604772, 22.469382]} icon={TextIcon('WD-6')} />
-                    <Marker position={[51.659413, 22.467526]} icon={TextIcon('R-1')} />
-                    <Marker position={[51.655238, 22.456768]} icon={TextIcon('R-2')} />
-                    <Marker position={[51.604345, 22.467462]} icon={TextIcon('R-3')} />
-                </MapContainer>
+                        <Marker position={[51.6391316, 22.4452260]} icon={office}>
+                            <Popup>
+                                <a
+                                    href="https://www.google.com/maps/dir/?api=1&destination=51.6391316,22.4452260"
+                                    target="blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    POLAQUA - biuro budowy
+                                </a>
+                            </Popup>
+                        </Marker>
+                        <Marker position={[51.658809, 22.463883]} icon={TextIcon('WD-1')} />
+                        <Marker position={[51.650344, 22.463754]} icon={TextIcon('PZM-1A')} />
+                        <Marker position={[51.640301, 22.460756]} icon={TextIcon('PZM-1B')} />
+                        <Marker position={[51.637621, 22.459265]} icon={TextIcon('PZM-1C')} />
+                        <Marker position={[51.637262, 22.459037]} icon={TextIcon('WD-2')} />
+                        <Marker position={[51.635451, 22.458071]} icon={TextIcon('PZM-2A')} />
+                        <Marker position={[51.630562, 22.456661]} icon={TextIcon('MS-3')} />
+                        <Marker position={[51.621980, 22.458954]} icon={TextIcon('PZM-3A')} />
+                        <Marker position={[51.619527, 22.460383]} icon={TextIcon('WD-4')} />
+                        <Marker position={[51.612672, 22.464592]} icon={TextIcon('MS-5')} />
+                        <Marker position={[51.609821, 22.466218]} icon={TextIcon('WS-5A')} />
+                        <Marker position={[51.606656, 22.468223]} icon={TextIcon('WS-5B')} />
+                        <Marker position={[51.604772, 22.469382]} icon={TextIcon('WD-6')} />
+                        <Marker position={[51.659413, 22.467526]} icon={TextIcon('R-1')} />
+                        <Marker position={[51.655238, 22.456768]} icon={TextIcon('R-2')} />
+                        <Marker position={[51.604345, 22.467462]} icon={TextIcon('R-3')} />
+                    </MapContainer>
+                </div>
             </div>
         </div>
     );

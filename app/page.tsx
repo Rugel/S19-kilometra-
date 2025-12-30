@@ -12,8 +12,10 @@ export default function Home() {
 
   return (
     <div className="contener">
-      <Header />
-      <MapComponent />
+      <div className="main-content">
+        <Header />
+        <MapComponent />
+      </div>
       <Footer />
       <CookieBanner />
     </div>
