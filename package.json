@@ -15,11 +15,11 @@
     "leaflet-fullscreen": "^1.0.2",
     "leaflet-geometryutil": "^0.10.3",
     "leaflet.fullscreen": "^3.0.2",
-    "next": "15.1.4",
+    "next": "^16.1.1",
     "proj4": "^2.15.0",
-    "react": "^19.0.0",
+    "react": "^19.2.3",
     "react-cookie-consent": "^9.0.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.2.3",
     "react-leaflet": "^5.0.0"
   },
   "devDependencies": {
