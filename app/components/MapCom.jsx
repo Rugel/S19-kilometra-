@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, CircleMarker } from "react-leaflet";
 import { prawaStr, lewaStr, polylineStyle } from "../utils/Points";
 import Recta from "./Recta";
