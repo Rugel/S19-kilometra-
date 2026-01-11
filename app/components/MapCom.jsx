@@ -16,9 +16,14 @@ L.Icon.Default.mergeOptions({
     iconRetinaUrl: '/images/marker-icon-2x.png',
     iconUrl: '/images/marker-icon.png',
     shadowUrl: '/images/marker-shadow.png',
+    alt: 'Znacznik lokalizacji'
 });
 
-const office = L.icon({ iconUrl: '/images/office.png', iconAnchor: [42, 42] });
+const office = L.icon({
+    iconUrl: '/images/office.png',
+    iconAnchor: [42, 42],
+    alt: 'POLAQUA - biuro budowy'
+});
 
 const ClickHandler = () => {
     const map = useMap();
@@ -238,7 +243,7 @@ const MapComponent = () => {
                         <Polyline positions={prawaStr} pathOptions={polylineStyle} />
                         <Polyline positions={lewaStr} pathOptions={polylineStyle} />
 
-                        <Marker position={[51.6391316, 22.4452260]} icon={office}>
+                        <Marker position={[51.6391316, 22.4452260]} icon={office} alt="POLAQUA - biuro budowy">
                             <Popup>
                                 <a
                                     href="https://www.google.com/maps/dir/?api=1&destination=51.6391316,22.4452260"
@@ -249,22 +254,22 @@ const MapComponent = () => {
                                 </a>
                             </Popup>
                         </Marker>
-                        <Marker position={[51.658809, 22.463883]} icon={TextIcon('WD-1')} />
-                        <Marker position={[51.650344, 22.463754]} icon={TextIcon('PZM-1A')} />
-                        <Marker position={[51.640301, 22.460756]} icon={TextIcon('PZM-1B')} />
-                        <Marker position={[51.637621, 22.459265]} icon={TextIcon('PZM-1C')} />
-                        <Marker position={[51.637262, 22.459037]} icon={TextIcon('WD-2')} />
-                        <Marker position={[51.635451, 22.458071]} icon={TextIcon('PZM-2A')} />
-                        <Marker position={[51.630562, 22.456661]} icon={TextIcon('MS-3')} />
-                        <Marker position={[51.621980, 22.458954]} icon={TextIcon('PZM-3A')} />
-                        <Marker position={[51.619527, 22.460383]} icon={TextIcon('WD-4')} />
-                        <Marker position={[51.612672, 22.464592]} icon={TextIcon('MS-5')} />
-                        <Marker position={[51.609821, 22.466218]} icon={TextIcon('WS-5A')} />
-                        <Marker position={[51.606656, 22.468223]} icon={TextIcon('WS-5B')} />
-                        <Marker position={[51.604772, 22.469382]} icon={TextIcon('WD-6')} />
-                        <Marker position={[51.659413, 22.467526]} icon={TextIcon('R-1')} />
-                        <Marker position={[51.655238, 22.456768]} icon={TextIcon('R-2')} />
-                        <Marker position={[51.604345, 22.467462]} icon={TextIcon('R-3')} />
+                        <Marker position={[51.658809, 22.463883]} icon={TextIcon('WD-1')} alt="Obiekt WD-1" />
+                        <Marker position={[51.650344, 22.463754]} icon={TextIcon('PZM-1A')} alt="Obiekt PZM-1A" />
+                        <Marker position={[51.640301, 22.460756]} icon={TextIcon('PZM-1B')} alt="Obiekt PZM-1B" />
+                        <Marker position={[51.637621, 22.459265]} icon={TextIcon('PZM-1C')} alt="Obiekt PZM-1C" />
+                        <Marker position={[51.637262, 22.459037]} icon={TextIcon('WD-2')} alt="Obiekt WD-2" />
+                        <Marker position={[51.635451, 22.458071]} icon={TextIcon('PZM-2A')} alt="Obiekt PZM-2A" />
+                        <Marker position={[51.630562, 22.456661]} icon={TextIcon('MS-3')} alt="Obiekt MS-3" />
+                        <Marker position={[51.621980, 22.458954]} icon={TextIcon('PZM-3A')} alt="Obiekt PZM-3A" />
+                        <Marker position={[51.619527, 22.460383]} icon={TextIcon('WD-4')} alt="Obiekt WD-4" />
+                        <Marker position={[51.612672, 22.464592]} icon={TextIcon('MS-5')} alt="Obiekt MS-5" />
+                        <Marker position={[51.609821, 22.466218]} icon={TextIcon('WS-5A')} alt="Obiekt WS-5A" />
+                        <Marker position={[51.606656, 22.468223]} icon={TextIcon('WS-5B')} alt="Obiekt WS-5B" />
+                        <Marker position={[51.604772, 22.469382]} icon={TextIcon('WD-6')} alt="Obiekt WD-6" />
+                        <Marker position={[51.659413, 22.467526]} icon={TextIcon('R-1')} alt="Obiekt R-1" />
+                        <Marker position={[51.655238, 22.456768]} icon={TextIcon('R-2')} alt="Obiekt R-2" />
+                        <Marker position={[51.604345, 22.467462]} icon={TextIcon('R-3')} alt="Obiekt R-3" />
                     </MapContainer>
                 </div>
             </div>
