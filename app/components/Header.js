@@ -1,8 +1,30 @@
-export default function Header(){
-    return(
+'use client';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+export default function Header() {
+    const pathname = usePathname();
+
+    const getLinkStyle = (path) => {
+        const isActive = pathname === path;
+        return {
+            color: 'var(--text-color)',
+            textDecoration: 'none',
+            borderBottom: isActive ? '2px solid var(--success-color)' : '1px solid transparent',
+            fontWeight: isActive ? '600' : '400',
+            opacity: isActive ? 1 : 0.8,
+            transition: 'all 0.3s ease'
+        };
+    };
+
+    return (
         <header className="header">
-            <h1>S19 - Obwodnica Kocka</h1>
-            <h2>odczyt kilometrażu</h2>
+            <nav style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
+                <Link href="/" style={getLinkStyle('/')}>Obwodnica Kocka</Link>
+                <Link href="/radzyn-kock" style={getLinkStyle('/radzyn-kock')}>Radzyń Podlaski - Kock</Link>
+            </nav>
+            <h1>S19 - Odczyt kilometrażu</h1>
+            <h2 style={{ fontSize: '1rem', opacity: 0.8 }}>System monitorowania postępów prac</h2>
         </header>
     )
 }
