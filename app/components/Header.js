@@ -24,7 +24,6 @@ export default function Header() {
                 <Link href="/radzyn-kock" style={getLinkStyle('/radzyn-kock')}>Radzyń Podlaski - Kock</Link>
             </nav>
             <h1>S19 - Odczyt kilometrażu</h1>
-            <h2 style={{ fontSize: '1rem', opacity: 0.8 }}>System monitorowania postępów prac</h2>
         </header>
     )
 }
