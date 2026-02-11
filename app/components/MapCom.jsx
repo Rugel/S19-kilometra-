@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap, CircleMarker } from "react-leaflet";
 import { prawaStr, lewaStr, polylineStyle, srodekStr } from "../utils/PointsRadzynKock";
 import { prawaStr as prawaStrKock, lewaStr as lewaStrKock, polylineStyle as polylineStyleKock } from "../utils/Points";
@@ -280,7 +280,7 @@ const MapComponent = ({
                             </>
                         )}
 
-                        <FitBounds bounds={bounds} />
+                        {!location && <FitBounds bounds={bounds} />}
                         <Recta bounds={bounds} />
                         <Polyline positions={pStr} pathOptions={pStyle} />
                         <Polyline positions={lStr} pathOptions={pStyle} />
