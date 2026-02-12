@@ -19,11 +19,10 @@ export default function Header() {
 
     return (
         <header className="header">
-            <nav style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
+            <nav style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', margin: '0.5rem 0', fontSize: '0.9rem' }}>
                 <Link href="/" style={getLinkStyle('/')}>Obwodnica Kocka</Link>
                 <Link href="/radzyn-kock" style={getLinkStyle('/radzyn-kock')}>Radzyń Podlaski - Kock</Link>
             </nav>
-            <h1>S19 - Odczyt kilometrażu</h1>
         </header>
     )
 }

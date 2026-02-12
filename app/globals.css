@@ -78,7 +78,7 @@ body {
 .map-component-wrapper {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
 }
 
 .content-column {
@@ -96,7 +96,7 @@ body {
     padding: var(--spacing-sm) 0;
     text-align: center;
     border-bottom: 1px solid var(--border-color);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
 }
 
 .header h1 {
@@ -287,7 +287,7 @@ a:hover {
 
 .link {
     text-align: center;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 /* Map Markers */
@@ -423,7 +423,7 @@ a:hover {
     .map-component-wrapper {
         flex-direction: row;
         flex: 1;
-        gap: var(--spacing-xl);
+        gap: var(--spacing-sm);
         min-height: 80vh;
     }
 

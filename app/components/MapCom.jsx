@@ -181,7 +181,7 @@ const MapComponent = ({
     return (
         <div className="map-component-wrapper">
             <div className="content-column">
-                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.5rem' }}>
                     <MapsSelect onChange={(value) => setMapType(value)} />
                 </div>
 
@@ -213,7 +213,7 @@ const MapComponent = ({
                     )}
                 </div>
 
-                <div style={{ textAlign: 'center', margin: '1rem 0' }}>
+                <div style={{ textAlign: 'center', margin: '0.5rem 0' }}>
                     <button
                         className="tap"
                         onClick={() => {
