@@ -27,7 +27,7 @@ export function lineLenth(map, latitude, longitude, activePrawaStr, activeLewaSt
     const start = point(startCoord);
     const stop = point([lngMid, latMid]);
 
-    const correctionFactor = 0.99929397;
+    const correctionFactor = 0.9995145463914841;
     const subline = lineSlice(start, stop, stringRewPathStr);
     let sublineLength = ((length(subline, { units: "kilometers" }) * fix) * correctionFactor) + offset;
     sublineLength = sublineLength.toFixed(3);

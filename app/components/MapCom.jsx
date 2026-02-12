@@ -332,6 +332,29 @@ const MapComponent = ({
                                         </a>
                                     </Popup>
                                 </Marker>
+
+                                {/* Obiekty Inżynierskie */}
+                                <Marker position={[51.793215, 22.614481]} icon={TextIcon('WD-39')} alt="Obiekt WD-39" />
+                                <Marker position={[51.790930, 22.606381]} icon={TextIcon('PZM-40')} alt="Obiekt PZM-40" />
+                                <Marker position={[51.781114, 22.594211]} icon={TextIcon('WD-41')} alt="Obiekt WD-41" />
+                                <Marker position={[51.779405, 22.592422]} icon={TextIcon('PZM-42')} alt="Obiekt PZM-42" />
+                                <Marker position={[51.777397, 22.590296]} icon={TextIcon('WD-43')} alt="Obiekt WD-43" />
+                                <Marker position={[51.771539, 22.584006]} icon={TextIcon('WD-44')} alt="Obiekt WD-44" />
+                                <Marker position={[51.764789, 22.576788]} icon={TextIcon('PZM-45')} alt="Obiekt PZM-45" />
+                                <Marker position={[51.758188, 22.569796]} icon={TextIcon('PZDs-46b')} alt="Obiekt PZDs-46b" />
+                                <Marker position={[51.752736, 22.564047]} icon={TextIcon('MOP Paszki')} alt="Obiekt MOP Paszki" />
+                                <Marker position={[51.748668, 22.559755]} icon={TextIcon('WD-46a')} alt="Obiekt WD-46a" />
+                                <Marker position={[51.746281, 22.557255]} icon={TextIcon('PZGd-47')} alt="Obiekt PZGd-47" />
+                                <Marker position={[51.740107, 22.550801]} icon={TextIcon('MOP Sitno')} alt="Obiekt MOP Sitno" />
+                                <Marker position={[51.737228, 22.547815]} icon={TextIcon('PP-47b')} alt="Obiekt PP-47b" />
+                                <Marker position={[51.731841, 22.542196]} icon={TextIcon('PZGd-48')} alt="Obiekt PZGd-48" />
+                                <Marker position={[51.721475, 22.531638]} icon={TextIcon('MS-49')} alt="Obiekt MS-49" />
+                                <Marker position={[51.717352, 22.527158]} icon={TextIcon('WD-50')} alt="Obiekt WD-50" />
+                                <Marker position={[51.706094, 22.515581]} icon={TextIcon('PZDs-51')} alt="Obiekt PZDs-51" />
+                                <Marker position={[51.694137, 22.503176]} icon={TextIcon('WD-52')} alt="Obiekt WD-52" />
+                                <Marker position={[51.685368, 22.494059]} icon={TextIcon('PZGdz-55')} alt="Obiekt PZGdz-55" />
+                                <Marker position={[51.676292, 22.484609]} icon={TextIcon('PP-57a')} alt="Obiekt PP-57a" />
+                                <Marker position={[51.667281, 22.472717]} icon={TextIcon('PZDs-60')} alt="Obiekt PZDs-60" />
                             </>
                         )}
                     </MapContainer>
