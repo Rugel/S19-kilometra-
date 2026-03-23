@@ -30,7 +30,7 @@ export default function Home() {
               W ramach budowy międzynarodowego szlaku <strong>Via Carpatia</strong>, realizowana jest inwestycja polegająca na dobudowie drugiej jezdni obwodnicy Kocka i Woli Skromowskiej o długości <strong>ok. 7,8 km</strong>. Istniejąca od 2011 roku trasa początkowo powstała jako droga jednojezdniowa, jednak rosnące natężenie ruchu wymusiło jej rozbudowę do pełnego profilu drogi ekspresowej <strong>S19</strong>.
             </p>
             <p style={{ marginBottom: '1rem' }}>
-              Wykonawcą prac jest firma <strong>Polaqua</strong>, a wartość kontraktu wynosi około <strong>220 mln zł</strong>. Rozbudowa obejmuje nie tylko poprowadzenie nowej, dwupasowej jezdni, ale również przebudowę łącznic na węzłach <strong>Kock Północ</strong> i <strong>Kock Południe</strong>. W ramach zadania powstają nowe obiekty inżynierskie, w tym mosty i wiadukty. Planowane zakończenie prac drogowych przewidziano na <strong>maj 2026 roku</strong>.
+              Wykonawcą prac jest firma <strong>Polaqua</strong>, a wartość kontraktu wynosi około <strong>183,4 mln zł</strong>. Rozbudowa obejmuje nie tylko poprowadzenie nowej, dwupasowej jezdni, ale również przebudowę łącznic na węzłach <strong>Kock Północ</strong> i <strong>Kock Południe</strong>. W ramach zadania powstają nowe obiekty inżynierskie, w tym mosty i wiadukty. Planowane zakończenie prac drogowych przewidziano na <strong>maj 2026 roku</strong>.
             </p>
             <p style={{ marginBottom: '1rem' }}>
               <strong>S19 Kilometraż</strong> pozwala na szybki i w miarę dokładny odczyt pikietażu drogowego, ułatwiając nawigację na terenie budowy dla wszystkich osób zaangażowanych w realizację projektu.
