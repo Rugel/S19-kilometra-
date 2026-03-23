@@ -1,27 +1,24 @@
 'use client';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import logo from '../icon.svg';
 
 export default function Header() {
     const pathname = usePathname();
 
-    const getLinkStyle = (path) => {
-        const isActive = pathname === path;
-        return {
-            color: 'var(--text-color)',
-            textDecoration: 'none',
-            borderBottom: isActive ? '2px solid var(--success-color)' : '1px solid transparent',
-            fontWeight: isActive ? '600' : '400',
-            opacity: isActive ? 1 : 0.8,
-            transition: 'all 0.3s ease'
-        };
+    const getLinkClass = (path) => {
+        return `nav-link ${pathname === path ? 'active' : ''}`;
     };
 
     return (
         <header className="header">
-            <nav style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', margin: '0.5rem 0', fontSize: '0.9rem' }}>
-                <Link href="/" style={getLinkStyle('/')}>Obwodnica Kocka</Link>
-                <Link href="/radzyn-kock" style={getLinkStyle('/radzyn-kock')}>Radzyń Podlaski - Kock</Link>
+            <nav className="nav-menu">
+                <Link href="/" className="logo-link" title="Strona główna">
+                    <Image src={logo} alt="S19 Logo" width={28} height={28} priority />
+                </Link>
+                <Link href="/" className={getLinkClass('/')}>Obwodnica Kocka</Link>
+                <Link href="/radzyn-kock" className={getLinkClass('/radzyn-kock')}>Radzyń Podlaski - Kock</Link>
             </nav>
         </header>
     )
