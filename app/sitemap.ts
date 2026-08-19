@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 1,
         },
         {
-            url: 'https://s19-kock.vercel.app/radzyn-kock',
+            url: 'https://s19-kock.vercel.app/kock',
             lastModified: new Date(),
             changeFrequency: 'weekly',
             priority: 0.9,

@@ -20,8 +20,8 @@ export default function Header() {
     return (
         <header className="header">
             <nav style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', margin: '0.5rem 0', fontSize: '0.9rem' }}>
-                <Link href="/" style={getLinkStyle('/')}>Obwodnica Kocka</Link>
-                <Link href="/radzyn-kock" style={getLinkStyle('/radzyn-kock')}>Radzyń Podlaski - Kock</Link>
+                <Link href="/" style={getLinkStyle('/')}>Radzyń Podlaski - Kock</Link>
+                <Link href="/kock" style={getLinkStyle('/kock')}>Obwodnica Kocka</Link>
             </nav>
         </header>
     )

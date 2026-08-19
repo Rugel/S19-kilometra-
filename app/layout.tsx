@@ -18,13 +18,13 @@ const jsonLd = {
 export const metadata: Metadata = {
   title: {
     template: "%s | S19 Kilometraż",
-    default: "S19 Kock — kilometraż na budowie obwodnicy Kocka i Woli Skromowskiej",
+    default: "S19 Radzyń Podlaski - Kock — kilometraż na budowie drogi ekspresowej",
   },
-  description: "Odczyt kilometrażu na budowie S19 — Obwodnica Kocka i Woli Skromowskiej za pomocą smartfona z modułem GPS. Plan budowy na mapie.",
+  description: "Odczyt kilometrażu na budowie S19 — odcinek Radzyń Podlaski - Kock za pomocą smartfona z modułem GPS. Plan budowy na mapie.",
   metadataBase: new URL('https://s19-kock.vercel.app'),
   openGraph: {
-    title: "S19 Kilometraż - GPS na budowie",
-    description: "Sprawdź swój kilometraż na budowie S19. Precyzyjna mapa i odczyt GPS.",
+    title: "S19 Radzyń Podlaski - Kock - GPS na budowie",
+    description: "Odczyt kilometrażu na budowie S19 odcinek Radzyń Podlaski — Kock. Sprawdź swoją lokalizację na mapie pikietażu.",
     url: 'https://s19-kock.vercel.app',
     siteName: 'S19 Kilometraż',
     locale: 'pl_PL',
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'S19 Kilometraż',
-    description: 'Odczyt kilometrażu na budowie S19 za pomocą GPS.',
+    title: 'S19 Radzyń Podlaski - Kock',
+    description: 'Odczyt kilometrażu na budowie S19 odcinek Radzyń Podlaski — Kock za pomocą GPS.',
   },
   icons: {
     icon: '/favicon.ico',

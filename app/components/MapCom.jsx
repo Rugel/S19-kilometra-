@@ -119,6 +119,7 @@ const MapComponent = ({
     const [location, setLocation] = useState(null);
     const [watchId, setWatchId] = useState(null);
     const [result, setResult] = useState(null);
+    const [gpsAccuracy, setGpsAccuracy] = useState(null);
     const [mapType, setMapType] = useState("osm");
 
     const bounds = section === "kock"
@@ -133,6 +134,7 @@ const MapComponent = ({
                         lat: position.coords.latitude,
                         lng: position.coords.longitude,
                     };
+                    setGpsAccuracy(position.coords.accuracy);
                     setLocation(userLocation);
                 },
                 (error) => {
@@ -178,6 +180,15 @@ const MapComponent = ({
 
     // TextIcon logic moved to exports
 
+    // Kolorowe oznaczenie jakości pomiaru na podstawie dokładności GPS (metry)
+    const quality = gpsAccuracy == null
+        ? null
+        : gpsAccuracy <= 5
+            ? { color: "var(--success-color)", label: "dobra" }
+            : gpsAccuracy <= 15
+                ? { color: "#f9a825", label: "średnia" }
+                : { color: "var(--danger-color)", label: "słaba" };
+
     return (
         <div className="map-component-wrapper">
             <div className="content-column">
@@ -201,7 +212,7 @@ const MapComponent = ({
                 <div id="info">
                     {result ? (
                         <p>
-                            KM: <span className="data">{result.length}</span>
+                            KM: <span className="data" style={{ color: quality?.color }}>{result.length}</span>
                         </p>
                     ) : (
                         <p>
@@ -210,6 +221,34 @@ const MapComponent = ({
                                 brak danych
                             </span>
                         </p>
+                    )}
+                    {gpsAccuracy != null && (
+                        <small
+                            style={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "0.4rem",
+                                fontSize: "0.75rem",
+                                color: quality.color,
+                                opacity: 0.85,
+                                marginTop: "0.25rem",
+                            }}
+                            title={`Jakość pomiaru: ${quality.label}`}
+                        >
+                            <span
+                                aria-hidden="true"
+                                style={{
+                                    width: "0.6rem",
+                                    height: "0.6rem",
+                                    borderRadius: "50%",
+                                    backgroundColor: quality.color,
+                                    display: "inline-block",
+                                    flexShrink: 0,
+                                }}
+                            ></span>
+                            dokładność: ±{Math.round(gpsAccuracy)} m
+                            <span style={{ opacity: 0.85 }}>· {quality.label}</span>
+                        </small>
                     )}
                 </div>
 
