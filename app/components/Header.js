@@ -17,8 +17,8 @@ export default function Header() {
                 <Link href="/" className="logo-link" title="Strona główna">
                     <Image src={logo} alt="S19 Logo" width={36} height={36} priority />
                 </Link>
-                <Link href="/" className={getLinkClass('/')}>Obwodnica Kocka</Link>
-                <Link href="/radzyn-kock" className={getLinkClass('/radzyn-kock')}>Radzyń Podlaski - Kock</Link>
+                <Link href="/" className={getLinkClass('/')}>Radzyń Podlaski - Kock</Link>
+                <Link href="/kock" className={getLinkClass('/kock')}>Obwodnica Kocka</Link>
             </nav>
         </header>
     )
