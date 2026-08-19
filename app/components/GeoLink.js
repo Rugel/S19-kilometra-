@@ -25,7 +25,7 @@ export default function GeoLink({ location }) {
 
     // Generowanie linku do Geoportalu
     //const geoportalUrl = `https://mapy.geoportal.gov.pl/mobile/#x=${x1992.toFixed(2)}&y=${y1992.toFixed(2)}&zoomLevel=18&gpsPosition=true`;
-    const geoportalUrl = `https://mapy.geoportal.gov.pl/imapnext/imap/index.html?mapview=${location.lat}%2C${location.lng}%2C250s#x=${x1992.toFixed(2)}&y=${y1992.toFixed(2)}&zoomLevel=18&gpsPosition=true`;
+    const geoportalUrl = `https://mapy.geoportal.gov.pl/imapnext/imap/index.html?mapview=${location.lat}%2C${location.lng}%2C250s#x=${x1992}&y=${y1992}&zoomLevel=18&gpsPosition=true`;
     return (
         <p>
             <a href={geoportalUrl} target="blank">
