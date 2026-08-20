@@ -345,9 +345,14 @@ const MapComponent = ({
                         <Polyline positions={lStr} pathOptions={pStyle} />
 
                         {/* Linie i obiekty pobrane z OSM (np. drogi w budowie) */}
-                        {osmWays.map((w) => (
-                            <Polyline key={w.id} positions={w.coords} pathOptions={{ color: wayColor(w.type), weight: 4, opacity: 0.8 }} />
-                        ))}
+                        {osmWays
+                            // Główna S19 z lines.json pokrywa się z czerwonymi
+                            // liniami pStr/lStr. Nie rysujemy jej drugi raz,
+                            // żeby w tym miejscu nie powstawała podwójna linia.
+                            .filter((w) => !(section === "radzyn" && w.type === "motorway"))
+                            .map((w) => (
+                                <Polyline key={w.id} positions={w.coords} pathOptions={{ color: wayColor(w.type), weight: 4, opacity: 0.8 }} />
+                            ))}
                         {osmLines.map((l) => (
                             <Polyline key={l.id} positions={l.points} pathOptions={{ color: l.color || "#0ea5e9", weight: 3, opacity: 0.85, dashArray: "6,4" }} />
                         ))}
