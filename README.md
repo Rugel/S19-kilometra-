@@ -1,5 +1,16 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Narzędzie OSM (mapa budowy)
+
+Aplikacja zawiera narzędzie pod adresem **`/builder`** (link „Narzędzie OSM” w menu), które pozwala:
+
+- **pobierać linie dróg z OpenStreetMap** — wysyła zapytania do Overpass API dla wybranego prostokąta (bbox) i wybranych typów dróg (`highway=motorway|trunk|primary|…`), a następnie rysuje je na mapie jako polilinie (listę punktów [lat, lng]),
+- **dodawać własne drogi (linie)** — tryb „Rysowanie linii”, kliknij w mapę by rysować punkt po punkcie, potem „Zapisz linię”,
+- **dodawać własne obiekty (markery)** — tryb „Dodaj obiekt”, klik w mapę i edycja nazwy,
+- **eksportować wynik do JSON** (przycisk „Generuj export” / „Kopiuj”), który można wkleić do pliku w `app/utils/…` i użyć w `MapCom` (komponenty `Polyline` / `Marker`).
+
+Wszystkie komponenty narzędzia znajdują się w `app/components/OsmBuilder.jsx`, a strona w `app/builder/page.jsx`.
+
 ## Getting Started
 
 First, run the development server:

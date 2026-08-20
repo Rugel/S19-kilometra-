@@ -11,6 +11,26 @@ import "leaflet.fullscreen";
 import L from "leaflet";
 import { lineLenth } from "../utils/lineLenth";
 import GeoLink from './GeoLink';
+// Zaimportowany export z narzędzia OSM (pobrane linie/ obiekty w traktcie budowy).
+// Plik powstaje w `app/utils/lines.json` po wyeksportowaniu z /builder.
+import osmExport from "../utils/lines.json";
+
+// Kolory linii pobranych z OSM (domyślnie drogi w budowie)
+const WAY_COLORS = {
+    motorway: "#e11d48",
+    trunk: "#f97316",
+    primary: "#eab308",
+    secondary: "#22c55e",
+    tertiary: "#3b82f6",
+    residential: "#a855f7",
+    service: "#64748b",
+    construction: "#ff5722",
+};
+const wayColor = (t) => WAY_COLORS[t] || "#0ea5e9";
+
+const osmWays = (osmExport && osmExport.ways) || [];
+const osmLines = (osmExport && osmExport.lines) || [];
+const osmMarkers = (osmExport && osmExport.markers) || [];
 
 // konfiguracja ikon
 L.Icon.Default.mergeOptions({
@@ -323,6 +343,19 @@ const MapComponent = ({
                         <Recta bounds={bounds} />
                         <Polyline positions={pStr} pathOptions={pStyle} />
                         <Polyline positions={lStr} pathOptions={pStyle} />
+
+                        {/* Linie i obiekty pobrane z OSM (np. drogi w budowie) */}
+                        {osmWays.map((w) => (
+                            <Polyline key={w.id} positions={w.coords} pathOptions={{ color: wayColor(w.type), weight: 4, opacity: 0.8 }} />
+                        ))}
+                        {osmLines.map((l) => (
+                            <Polyline key={l.id} positions={l.points} pathOptions={{ color: l.color || "#0ea5e9", weight: 3, opacity: 0.85, dashArray: "6,4" }} />
+                        ))}
+                        {osmMarkers.map((m) => (
+                            <Marker key={m.id} position={[m.lat, m.lng]} icon={TextIcon(m.name)}>
+                                <Popup>{m.name}</Popup>
+                            </Marker>
+                        ))}
 
                         {section === "kock" && (
                             <>

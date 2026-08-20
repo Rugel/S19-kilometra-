@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import logo from '../icon.svg';
 
+const isDev = process.env.NODE_ENV === "development";
+
 export default function Header() {
     const pathname = usePathname();
 
@@ -19,6 +21,7 @@ export default function Header() {
                 </Link>
                 <Link href="/" className={getLinkClass('/')}>Radzyń Podlaski - Kock</Link>
                 <Link href="/kock" className={getLinkClass('/kock')}>Obwodnica Kocka</Link>
+                {isDev && <Link href="/builder" className={getLinkClass('/builder')}>Narzędzie OSM</Link>}
             </nav>
         </header>
     )
