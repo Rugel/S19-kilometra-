@@ -2,9 +2,6 @@ export default function MapsSelect({ onChange }) {
     return (
         <div className="maps">
             <fieldset>
-                <legend>
-                    wybór mapy
-                </legend>
                 <div className="map-options">
                     <input
                         type="radio"

@@ -232,7 +232,7 @@ const MapComponent = ({
                 <div id="info">
                     {result ? (
                         <p>
-                            KM: <span className="data" style={{ color: quality?.color }}>{result.length}</span>
+                            KM: <span className="data" style={{ color: "var(--primary-color)", fontSize: "2rem", fontWeight: 700 }}>{result.length}</span>
                         </p>
                     ) : (
                         <p>
@@ -242,19 +242,19 @@ const MapComponent = ({
                             </span>
                         </p>
                     )}
-                    {gpsAccuracy != null && (
-                        <small
-                            style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "0.4rem",
-                                fontSize: "0.75rem",
-                                color: quality.color,
-                                opacity: 0.85,
-                                marginTop: "0.25rem",
-                            }}
-                            title={`Jakość pomiaru: ${quality.label}`}
-                        >
+                    <small
+                        style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.4rem",
+                            fontSize: "0.75rem",
+                            color: "var(--text-color)",
+                            opacity: 0.85,
+                            marginTop: "0.25rem",
+                        }}
+                        title={gpsAccuracy != null ? `Jakość pomiaru: ${quality.label}` : "Jakość pomiaru: brak danych"}
+                    >
+                        {gpsAccuracy != null && (
                             <span
                                 aria-hidden="true"
                                 style={{
@@ -266,10 +266,21 @@ const MapComponent = ({
                                     flexShrink: 0,
                                 }}
                             ></span>
-                            dokładność: ±{Math.round(gpsAccuracy)} m
+                        )}
+                        dokładność:{" "}
+                        <span
+                            style={{
+                                fontWeight: 700,
+                                fontSize: "0.9rem",
+                                color: gpsAccuracy != null ? quality.color : "var(--text-light)",
+                            }}
+                        >
+                            {gpsAccuracy != null ? `±${Math.round(gpsAccuracy)} m` : "brak danych"}
+                        </span>
+                        {gpsAccuracy != null && (
                             <span style={{ opacity: 0.85 }}>· {quality.label}</span>
-                        </small>
-                    )}
+                        )}
+                    </small>
                 </div>
 
                 <div style={{ textAlign: 'center', margin: '0.5rem 0' }}>
