@@ -236,7 +236,7 @@ const MapComponent = ({
 
                 <div id="info">
                     <p>
-                        KM: <span className="data" style={{ color: result ? "var(--primary-color)" : "var(--text-light)", fontSize: "2rem", fontWeight: result ? 700 : 400 }}>{result ? result.length : "brak danych"}</span>
+                        KM: <span className="data" style={{ color: result ? "var(--primary-color)" : "var(--text-light)", fontWeight: result ? 700 : 400 }}>{result ? result.length : "brak danych"}</span>
                     </p>
                     <small
                         style={{
@@ -246,7 +246,7 @@ const MapComponent = ({
                             fontSize: "0.75rem",
                             color: "var(--text-color)",
                             opacity: 0.85,
-                            marginTop: "0.25rem",
+                            marginTop: 0,
                         }}
                         title={gpsAccuracy != null ? `Jakość pomiaru: ${quality.label}` : "Jakość pomiaru: brak danych"}
                     >
@@ -265,7 +265,7 @@ const MapComponent = ({
                         <span
                             style={{
                                 fontWeight: 700,
-                                fontSize: "0.9rem",
+                                fontSize: "0.8rem",
                                 color: gpsAccuracy != null ? quality.color : "var(--text-light)",
                             }}
                         >

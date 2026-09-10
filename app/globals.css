@@ -187,7 +187,7 @@ body {
 /* Controls & Info */
 #info {
     background: var(--card-background);
-    padding: var(--spacing-sm);
+    padding: 0.25rem var(--spacing-sm);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
     margin-bottom: var(--spacing-sm);
@@ -196,14 +196,24 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: 0;
     border: 1px solid var(--border-color);
 }
 
 #info p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     margin: 0;
+    line-height: 1.3;
+}
+
+#info .data {
+    font-size: 1.5rem;
+}
+
+#info small {
+    margin-top: 0;
+    line-height: 1.3;
 }
 
 .data {
@@ -571,11 +581,16 @@ a:hover {
 
     #info {
         margin: 0 var(--spacing-md) var(--spacing-xs);
-        padding: var(--spacing-xs);
+        padding: 0.15rem var(--spacing-xs);
     }
 
     #info p {
-        font-size: 1rem;
+        font-size: 0.9rem;
+        line-height: 1.25;
+    }
+
+    #info .data {
+        font-size: 1.25rem;
     }
 
     .link {
@@ -596,6 +611,22 @@ a:hover {
         padding: var(--spacing-sm) var(--spacing-md);
         font-size: 0.95rem;
         min-width: 120px;
+    }
+
+    /* Legenda mapy – przycisk rozwijający o połowę mniejszy */
+    .map-legend {
+        max-width: 44vw;
+    }
+
+    .map-legend-toggle {
+        padding: 0.28rem 0.38rem;
+        font-size: 0.65rem;
+        gap: 0.25rem;
+        letter-spacing: 0.25px;
+    }
+
+    .map-legend-toggle::after {
+        font-size: 0.55rem;
     }
 }
 
