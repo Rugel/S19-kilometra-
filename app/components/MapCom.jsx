@@ -5,6 +5,7 @@ import { prawaStr, lewaStr, polylineStyle, srodekStr } from "../utils/PointsRadz
 import { prawaStr as prawaStrKock, lewaStr as lewaStrKock, polylineStyle as polylineStyleKock } from "../utils/Points";
 import Recta from "./Recta";
 import MapsSelect from "./MapsSelect";
+import MapLegend from "./MapLegend";
 import "leaflet.fullscreen/Control.FullScreen.css";
 import "leaflet/dist/leaflet.css";
 import "leaflet.fullscreen";
@@ -14,19 +15,7 @@ import GeoLink from './GeoLink';
 // Zaimportowany export z narzędzia OSM (pobrane linie/ obiekty w traktcie budowy).
 // Plik powstaje w `app/utils/lines.json` po wyeksportowaniu z /builder.
 import osmExport from "../utils/lines.json";
-
-// Kolory linii pobranych z OSM (domyślnie drogi w budowie)
-const WAY_COLORS = {
-    motorway: "#e11d48",
-    trunk: "#f97316",
-    primary: "#eab308",
-    secondary: "#22c55e",
-    tertiary: "#3b82f6",
-    residential: "#a855f7",
-    service: "#64748b",
-    construction: "#ff5722",
-};
-const wayColor = (t) => WAY_COLORS[t] || "#0ea5e9";
+import { wayPathOptions } from "../utils/legend";
 
 const osmWays = (osmExport && osmExport.ways) || [];
 const osmLines = (osmExport && osmExport.lines) || [];
@@ -209,6 +198,22 @@ const MapComponent = ({
                 ? { color: "#f9a825", label: "średnia" }
                 : { color: "var(--danger-color)", label: "słaba" };
 
+    // Drogi OSM faktycznie rysowane na mapie (ten sam filtr co przy
+    // renderze linii) – legenda pokazuje tylko to, co widać.
+    const visibleOsmWays = useMemo(
+        () => (osmWays || []).filter((w) => !(section === "radzyn" && w.type === "motorway")),
+        [section]
+    );
+    const legendWayTypes = useMemo(() => {
+        const order = ["motorway", "motorway_link", "trunk", "primary", "secondary", "tertiary", "unclassified", "unclassied", "residential", "service", "construction", "track", "footway", "path", "steps", "cycleway"];
+        const present = [...new Set(visibleOsmWays.map((w) => w.type))];
+        return present.sort((a, b) => {
+            const ia = order.indexOf(a);
+            const ib = order.indexOf(b);
+            return (ia === -1 ? order.length : ia) - (ib === -1 ? order.length : ib);
+        });
+    }, [visibleOsmWays]);
+
     return (
         <div className="map-component-wrapper">
             <div className="content-column">
@@ -339,18 +344,23 @@ const MapComponent = ({
 
                         {!location && <FitBounds bounds={bounds} />}
                         <Recta bounds={bounds} />
+                        <MapLegend
+                            section={section}
+                            routeColor={pStyle.color || "red"}
+                            wayTypes={legendWayTypes}
+                            customLines={osmLines}
+                            customMarkers={osmMarkers}
+                        />
                         <Polyline positions={pStr} pathOptions={pStyle} />
                         <Polyline positions={lStr} pathOptions={pStyle} />
 
-                        {/* Linie i obiekty pobrane z OSM (np. drogi w budowie) */}
-                        {osmWays
-                            // Główna S19 z lines.json pokrywa się z czerwonymi
-                            // liniami pStr/lStr. Nie rysujemy jej drugi raz,
-                            // żeby w tym miejscu nie powstawała podwójna linia.
-                            .filter((w) => !(section === "radzyn" && w.type === "motorway"))
-                            .map((w) => (
-                                <Polyline key={w.id} positions={w.coords} pathOptions={{ color: wayColor(w.type), weight: 4, opacity: 0.8 }} />
-                            ))}
+                        {/* Linie i obiekty pobrane z OSM (np. drogi w budowie).
+                            Główna S19 z lines.json pokrywa się z czerwonymi
+                            liniami pStr/lStr – filtrowane w `visibleOsmWays`,
+                            żeby w tym miejscu nie powstawała podwójna linia. */}
+                        {visibleOsmWays.map((w) => (
+                                <Polyline key={w.id} positions={w.coords} pathOptions={wayPathOptions(w.type)} />
+                        ))}
                         {osmLines.map((l) => (
                             <Polyline key={l.id} positions={l.points} pathOptions={{ color: l.color || "#0ea5e9", weight: 3, opacity: 0.85, dashArray: "6,4" }} />
                         ))}
